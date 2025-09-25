@@ -1,2 +1,2 @@
-# sleevies
+# README
 Sleevies generates a sleeve
