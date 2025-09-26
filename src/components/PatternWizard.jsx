@@ -170,7 +170,7 @@ function MeasurementsStep({ units, setUnits, measurements, setMeasurements, work
   return (
     <div>
       <div className="flex items-center justify-between mb-6">
-        <h3 className="text-xl font-semibold">Enter Your Measurements</h3>
+        <h3 className="text-xl font-heading font-semibold">Enter Your Measurements</h3>
         
         {/* Unit Toggle */}
         <div className="flex items-center space-x-3">
@@ -267,7 +267,7 @@ function SleeveCapStep({ units, sleeveCapMeasurements, setSleeveCapMeasurements 
 
   return (
     <div>
-      <h3 className="text-xl font-semibold mb-6">Sleeve Cap Measurements</h3>
+      <h3 className="text-xl font-heading font-semibold mb-6">Sleeve Cap Measurements</h3>
       
       <div className="mb-6">
         <p className="text-gray-600 mb-4">
@@ -419,7 +419,7 @@ function CustomizationStep({ units, setUnits }) {
   return (
     <div>
       <div className="flex items-center justify-between mb-6">
-        <h3 className="text-xl font-semibold">Customize Your Pattern</h3>
+        <h3 className="text-xl font-heading font-semibold">Customize Your Pattern</h3>
         
         {/* Unit Toggle */}
         <div className="flex items-center space-x-3">
@@ -620,7 +620,7 @@ function GenerateStep() {
         transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
         className="w-16 h-16 border-4 border-orange-600 border-t-transparent rounded-full mx-auto mb-4"
       />
-      <h3 className="text-xl font-semibold mb-4">Generating Your Pattern...</h3>
+      <h3 className="text-xl font-heading font-semibold mb-4">Generating Your Pattern...</h3>
       <p className="text-gray-600">
         We're creating your custom sleeve pattern based on your measurements and preferences.
         This will just take a moment!
