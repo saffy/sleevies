@@ -1,57 +1,7 @@
-@import "tailwindcss";
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-
-@plugin "daisyui";
-@plugin "daisyui/theme" {
-  name: "tropical-light";
-  default: true;
-  prefersdark: false;
-  color-scheme: light;
-
-  /* Base colors - light theme with warm tones */
-  --color-base-100: oklch(98% 0.005 50);
-  --color-base-200: oklch(95% 0.008 45);
-  --color-base-300: oklch(90% 0.015 40);
-  --color-base-content: oklch(25% 0.02 20);
-
-  /* Primary - using bright red/pink #c63154 */
-  --color-primary: oklch(55% 0.2 15);
-  --color-primary-content: oklch(98% 0.005 15);
-
-  /* Secondary - using warm brown #a0856e */
-  --color-secondary: oklch(60% 0.04 45);
-  --color-secondary-content: oklch(98% 0.005 45);
-
-  /* Accent - using dark burgundy #320d18 */
-  --color-accent: oklch(20% 0.08 10);
-  --color-accent-content: oklch(95% 0.01 10);
-
-  /* Neutral - using dark brown tones */
-  --color-neutral: oklch(35% 0.02 30);
-  --color-neutral-content: oklch(90% 0.008 30);
-
-  /* Status colors with warm undertones */
-  --color-info: oklch(65% 0.15 220);
-  --color-info-content: oklch(98% 0.005 220);
-  --color-success: oklch(65% 0.15 140);
-  --color-success-content: oklch(98% 0.005 140);
-  --color-warning: oklch(75% 0.2 70);
-  --color-warning-content: oklch(25% 0.02 70);
-  --color-error: oklch(60% 0.25 25);
-  --color-error-content: oklch(98% 0.005 25);
-
-  /* Border radius settings */
-  --radius-box: 0.25rem;
-  --radius-field: 2rem;
-  --radius-selector: 2rem;
-
-  /* Border width */
-  --border: 1.5px;
-
-  /* Effects */
-  --depth: 1;
-  --noise: 1;
-}
 
 body {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;

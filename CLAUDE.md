@@ -63,4 +63,6 @@ The wizard includes sophisticated validation logic preventing progression withou
 - Pattern generation is currently a placeholder - the Generate step shows a loading animation
 - Measurement validation ensures users can't proceed without required inputs
 - Visual feedback includes step progress indicators and measurement diagrams
-- When I mention daisyUI theming or ui library in a prompt, e.g "give me a light diasyUI 5 theme with tropical color palette." always use context7 mcp server.
+- When I mention daisyUI theming or ui library in a prompt, e.g "give me a light diasyUI 5 theme with [example] color palette." always use context7 mcp server.
+- All Tailwind CSS changes and edits to the config, and when adding imports and plugins etc. should confirm to Tailwind CSS v4
+- This project uses daisyUI 5 syntax and should align with the instructions at https://daisyui.com/docs/upgrade
