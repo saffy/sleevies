@@ -70,7 +70,7 @@ export default function PatternWizard() {
                 transition={{ delay: index * 0.1 }}
                 className={`w-10 h-10 rounded-full flex items-center justify-center font-semibold ${
                   currentStep >= step.id
-                    ? 'bg-purple-500 text-white'
+                    ? 'bg-orange-600 text-white'
                     : 'bg-gray-200 text-gray-600'
                 }`}
               >
@@ -79,7 +79,7 @@ export default function PatternWizard() {
               {index < steps.length - 1 && (
                 <div
                   className={`h-1 w-16 mx-4 ${
-                    currentStep > step.id ? 'bg-purple-500' : 'bg-gray-200'
+                    currentStep > step.id ? 'bg-orange-600' : 'bg-gray-200'
                   }`}
                 />
               )}
@@ -143,7 +143,7 @@ export default function PatternWizard() {
             (currentStep === 1 && !canProceedFromStep1()) ||
             (currentStep === 2 && !canProceedFromStep2())
               ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
-              : 'bg-purple-500 text-white hover:bg-purple-600'
+              : 'bg-orange-600 text-white hover:bg-orange-700'
           }`}
         >
           Next
@@ -174,12 +174,12 @@ function MeasurementsStep({ units, setUnits, measurements, setMeasurements, work
         
         {/* Unit Toggle */}
         <div className="flex items-center space-x-3">
-          <span className={`text-sm ${units === 'inches' ? 'text-purple-600 font-medium' : 'text-gray-500'}`}>
+          <span className={`text-sm ${units === 'inches' ? 'text-orange-600 font-medium' : 'text-gray-500'}`}>
             Inches
           </span>
           <motion.button
             onClick={() => setUnits(units === 'inches' ? 'cm' : 'inches')}
-            className={`relative w-12 h-6 rounded-full transition-colors ${units === 'inches' ? 'bg-gray-300' : 'bg-purple-500'}`}
+            className={`relative w-12 h-6 rounded-full transition-colors ${units === 'inches' ? 'bg-gray-300' : 'bg-green-600'}`}
             whileTap={{ scale: 0.95 }}
           >
             <motion.div
@@ -188,7 +188,7 @@ function MeasurementsStep({ units, setUnits, measurements, setMeasurements, work
               transition={{ type: "spring", stiffness: 500, damping: 30 }}
             />
           </motion.button>
-          <span className={`text-sm ${units === 'cm' ? 'text-purple-600 font-medium' : 'text-gray-500'}`}>
+          <span className={`text-sm ${units === 'cm' ? 'text-orange-600 font-medium' : 'text-gray-500'}`}>
             CM
           </span>
         </div>
@@ -205,7 +205,7 @@ function MeasurementsStep({ units, setUnits, measurements, setMeasurements, work
               type="number"
               value={measurements.shoulderToElbow}
               onChange={(e) => handleMeasurementChange('shoulderToElbow', e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
               placeholder={placeholders[units].shoulderToElbow}
               step="0.1"
             />
@@ -222,7 +222,7 @@ function MeasurementsStep({ units, setUnits, measurements, setMeasurements, work
               type="number"
               value={measurements.shoulderToWrist}
               onChange={(e) => handleMeasurementChange('shoulderToWrist', e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
               placeholder={placeholders[units].shoulderToWrist}
               step="0.1"
             />
@@ -279,7 +279,7 @@ function SleeveCapStep({ units, sleeveCapMeasurements, setSleeveCapMeasurements 
             whileHover={{ scale: 1.02 }}
             className={`border-2 rounded-lg p-4 cursor-pointer transition-colors ${
               sleeveCapMeasurements.measurementType === 'bust' 
-                ? 'border-purple-300 bg-purple-50' 
+                ? 'border-orange-300 bg-orange-50' 
                 : 'border-gray-200 hover:border-gray-300'
             }`}
             onClick={() => handleMeasurementChange('measurementType', 'bust')}
@@ -289,7 +289,7 @@ function SleeveCapStep({ units, sleeveCapMeasurements, setSleeveCapMeasurements 
                 type="radio"
                 checked={sleeveCapMeasurements.measurementType === 'bust'}
                 onChange={() => {}}
-                className="mr-2 text-purple-500"
+                className="mr-2 text-orange-600"
               />
               <h4 className="font-medium">From Bust Measurement</h4>
             </div>
@@ -302,7 +302,7 @@ function SleeveCapStep({ units, sleeveCapMeasurements, setSleeveCapMeasurements 
             whileHover={{ scale: 1.02 }}
             className={`border-2 rounded-lg p-4 cursor-pointer transition-colors ${
               sleeveCapMeasurements.measurementType === 'manual' 
-                ? 'border-purple-300 bg-purple-50' 
+                ? 'border-orange-300 bg-orange-50' 
                 : 'border-gray-200 hover:border-gray-300'
             }`}
             onClick={() => handleMeasurementChange('measurementType', 'manual')}
@@ -312,7 +312,7 @@ function SleeveCapStep({ units, sleeveCapMeasurements, setSleeveCapMeasurements 
                 type="radio"
                 checked={sleeveCapMeasurements.measurementType === 'manual'}
                 onChange={() => {}}
-                className="mr-2 text-purple-500"
+                className="mr-2 text-orange-600"
               />
               <h4 className="font-medium">Manual Entry</h4>
             </div>
@@ -323,7 +323,7 @@ function SleeveCapStep({ units, sleeveCapMeasurements, setSleeveCapMeasurements 
         </div>
 
         {sleeveCapMeasurements.measurementType === 'bust' ? (
-          <div className="bg-blue-50 p-4 rounded-lg">
+          <div className="bg-orange-50 p-4 rounded-lg">
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Bust Measurement ({units})
             </label>
@@ -331,7 +331,7 @@ function SleeveCapStep({ units, sleeveCapMeasurements, setSleeveCapMeasurements 
               type="number"
               value={sleeveCapMeasurements.bust}
               onChange={(e) => handleMeasurementChange('bust', e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
               placeholder={bustPlaceholders[units]}
               step="0.1"
             />
@@ -340,7 +340,7 @@ function SleeveCapStep({ units, sleeveCapMeasurements, setSleeveCapMeasurements 
             </p>
           </div>
         ) : (
-          <div className="bg-pink-50 p-4 rounded-lg space-y-4">
+          <div className="bg-green-50 p-4 rounded-lg space-y-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Sleeve Cap Width ({units})
@@ -349,7 +349,7 @@ function SleeveCapStep({ units, sleeveCapMeasurements, setSleeveCapMeasurements 
                 type="number"
                 value={sleeveCapMeasurements.sleeveCapWidth}
                 onChange={(e) => handleMeasurementChange('sleeveCapWidth', e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                 placeholder={sleeveCapPlaceholders[units].width}
                 step="0.1"
               />
@@ -362,7 +362,7 @@ function SleeveCapStep({ units, sleeveCapMeasurements, setSleeveCapMeasurements 
                 type="number"
                 value={sleeveCapMeasurements.sleeveCapHeight}
                 onChange={(e) => handleMeasurementChange('sleeveCapHeight', e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                 placeholder={sleeveCapPlaceholders[units].height}
                 step="0.1"
               />
@@ -423,12 +423,12 @@ function CustomizationStep({ units, setUnits }) {
         
         {/* Unit Toggle */}
         <div className="flex items-center space-x-3">
-          <span className={`text-sm ${units === 'inches' ? 'text-purple-600 font-medium' : 'text-gray-500'}`}>
+          <span className={`text-sm ${units === 'inches' ? 'text-orange-600 font-medium' : 'text-gray-500'}`}>
             Inches
           </span>
           <motion.button
             onClick={() => setUnits(units === 'inches' ? 'cm' : 'inches')}
-            className={`relative w-12 h-6 rounded-full transition-colors ${units === 'inches' ? 'bg-gray-300' : 'bg-purple-500'}`}
+            className={`relative w-12 h-6 rounded-full transition-colors ${units === 'inches' ? 'bg-gray-300' : 'bg-green-600'}`}
             whileTap={{ scale: 0.95 }}
           >
             <motion.div
@@ -437,7 +437,7 @@ function CustomizationStep({ units, setUnits }) {
               transition={{ type: "spring", stiffness: 500, damping: 30 }}
             />
           </motion.button>
-          <span className={`text-sm ${units === 'cm' ? 'text-purple-600 font-medium' : 'text-gray-500'}`}>
+          <span className={`text-sm ${units === 'cm' ? 'text-orange-600 font-medium' : 'text-gray-500'}`}>
             CM
           </span>
         </div>
@@ -465,7 +465,7 @@ function CustomizationStep({ units, setUnits }) {
             </div>
           </div>
           <select 
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
             value={easeType}
             onChange={(e) => setEaseType(e.target.value)}
           >
@@ -477,7 +477,7 @@ function CustomizationStep({ units, setUnits }) {
           </select>
           
           {easeType === 'stretch' && (
-            <div className="mt-3 p-3 bg-pink-50 border border-pink-200 rounded-md">
+            <div className="mt-3 p-3 bg-green-50 border border-green-200 rounded-md">
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Negative Ease Percentage
               </label>
@@ -489,7 +489,7 @@ function CustomizationStep({ units, setUnits }) {
                   step="1"
                   value={customNegativeEase}
                   onChange={(e) => setCustomNegativeEase(e.target.value)}
-                  className="w-20 px-2 py-1 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-purple-500"
+                  className="w-20 px-2 py-1 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-orange-500"
                   placeholder="15"
                 />
                 <span className="text-sm text-gray-600">%</span>
@@ -509,7 +509,7 @@ function CustomizationStep({ units, setUnits }) {
           <label className="block text-sm font-medium text-gray-700 mb-2">
             Seam Allowance
           </label>
-          <select className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500">
+          <select className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500">
             {seamAllowanceOptions.map(option => (
               <option key={option.value} value={option.value}>
                 {option.label}
@@ -523,9 +523,9 @@ function CustomizationStep({ units, setUnits }) {
       </div>
       
       <div className="mt-6 space-y-4">
-        <div className="p-4 bg-purple-50 rounded-lg">
-          <h4 className="font-medium text-purple-800 mb-2">🧵 Fabric Tips</h4>
-          <ul className="text-sm text-purple-700 space-y-1">
+        <div className="p-4 bg-orange-50 rounded-lg">
+          <h4 className="font-medium text-orange-800 mb-2">🧵 Fabric Tips</h4>
+          <ul className="text-sm text-orange-700 space-y-1">
             <li>• <strong>Woven fabrics:</strong> Choose Fitted, Regular, or Loose ease</li>
             <li>• <strong>Stretch fabrics:</strong> Select "Stretch Fabric" for negative ease</li>
             <li>• <strong>Seam allowance:</strong> 5/8" (1.5cm) is standard for most garments</li>
@@ -533,12 +533,12 @@ function CustomizationStep({ units, setUnits }) {
         </div>
 
         {easeType === 'stretch' && (
-          <div className="p-4 bg-blue-50 rounded-lg border-l-4 border-blue-400">
+          <div className="p-4 bg-green-50 rounded-lg border-l-4 border-green-500">
             <div className="flex items-center justify-between mb-3">
-              <h4 className="font-medium text-blue-800">📐 How to Test Your Fabric Stretch</h4>
+              <h4 className="font-medium text-green-800">📐 How to Test Your Fabric Stretch</h4>
               <motion.button
                 onClick={() => setShowStretchGuide(!showStretchGuide)}
-                className="flex items-center space-x-2 text-blue-600 hover:text-blue-800 transition-colors"
+                className="flex items-center space-x-2 text-green-600 hover:text-green-800 transition-colors"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
@@ -560,7 +560,7 @@ function CustomizationStep({ units, setUnits }) {
             
             {showStretchGuide && (
               <motion.div 
-                className="space-y-4 text-sm text-blue-700"
+                className="space-y-4 text-sm text-green-700"
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: 'auto' }}
                 exit={{ opacity: 0, height: 0 }}
@@ -594,8 +594,8 @@ function CustomizationStep({ units, setUnits }) {
                 </ol>
               </div>
 
-              <div className="bg-blue-100 p-3 rounded mt-3">
-                <p className="font-medium text-blue-900 mb-1">💡 Pro Tips:</p>
+              <div className="bg-green-100 p-3 rounded mt-3">
+                <p className="font-medium text-green-900 mb-1">💡 Pro Tips:</p>
                 <ul className="space-y-1 text-xs">
                   <li>• Don't use maximum stretch - aim for 50-70% of maximum</li>
                   <li>• Test stretch in the direction you'll be sewing (crosswise for sleeves)</li>
@@ -618,7 +618,7 @@ function GenerateStep() {
       <motion.div
         animate={{ rotate: 360 }}
         transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-        className="w-16 h-16 border-4 border-purple-500 border-t-transparent rounded-full mx-auto mb-4"
+        className="w-16 h-16 border-4 border-orange-600 border-t-transparent rounded-full mx-auto mb-4"
       />
       <h3 className="text-xl font-semibold mb-4">Generating Your Pattern...</h3>
       <p className="text-gray-600">

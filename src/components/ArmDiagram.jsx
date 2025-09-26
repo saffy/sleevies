@@ -56,7 +56,7 @@ export default function ArmDiagram({ shoulderToElbow, shoulderToWrist, units }) 
           y1={armCenterY - armWidth/2 - 3}
           x2={shoulderX}
           y2={armCenterY + armWidth/2 + 3}
-          stroke="#7C3AED"
+          stroke="#EA580C"
           strokeWidth="0.8"
           strokeLinecap="round"
         />
@@ -66,7 +66,7 @@ export default function ArmDiagram({ shoulderToElbow, shoulderToWrist, units }) 
           textAnchor="middle"
           fontSize="3"
           fontWeight="600"
-          fill="#7C3AED"
+          fill="#EA580C"
         >
           Shoulder
         </text>
@@ -77,7 +77,7 @@ export default function ArmDiagram({ shoulderToElbow, shoulderToWrist, units }) 
           y1={armCenterY - armWidth/2 - 2.5}
           x2={elbowX}
           y2={armCenterY + armWidth/2 + 2.5}
-          stroke="#EC4899"
+          stroke="#16A34A"
           strokeWidth="0.6"
           strokeLinecap="round"
         />
@@ -121,17 +121,17 @@ export default function ArmDiagram({ shoulderToElbow, shoulderToWrist, units }) 
               y1={armCenterY + armWidth/2 + 6}
               x2={elbowX}
               y2={armCenterY + armWidth/2 + 6}
-              stroke="#EC4899"
+              stroke="#16A34A"
               strokeWidth="0.2"
-              markerEnd="url(#arrowhead-pink)"
-              markerStart="url(#arrowhead-pink)"
+              markerEnd="url(#arrowhead-sage)"
+              markerStart="url(#arrowhead-sage)"
             />
             <text
               x={(shoulderX + elbowX) / 2}
               y={armCenterY + armWidth/2 + 10}
               textAnchor="middle"
               fontSize="2.5"
-              fill="#EC4899"
+              fill="#16A34A"
               fontWeight="500"
             >
               {shoulderToElbow} {units}
@@ -167,14 +167,14 @@ export default function ArmDiagram({ shoulderToElbow, shoulderToWrist, units }) 
         {/* Arrow markers */}
         <defs>
           <marker
-            id="arrowhead-pink"
+            id="arrowhead-sage"
             markerWidth="1.5"
             markerHeight="1"
             refX="0.75"
             refY="0.5"
             orient="auto"
           >
-            <polygon points="0 0, 1.5 0.5, 0 1" fill="#EC4899" />
+            <polygon points="0 0, 1.5 0.5, 0 1" fill="#16A34A" />
           </marker>
           <marker
             id="arrowhead-green"
