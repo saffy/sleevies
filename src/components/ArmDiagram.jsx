@@ -55,7 +55,7 @@ export default function ArmDiagram({ shoulderToElbow, shoulderToWrist, units }) 
           y1={armCenterY - armWidth/2 - 3}
           x2={shoulderX}
           y2={armCenterY + armWidth/2 + 3}
-          className="stroke-primary"
+          stroke="#F2404F"
           strokeWidth="0.8"
           strokeLinecap="round"
         />
@@ -65,7 +65,7 @@ export default function ArmDiagram({ shoulderToElbow, shoulderToWrist, units }) 
           textAnchor="middle"
           fontSize="3"
           fontWeight="600"
-          className="fill-primary"
+          fill="#F2404F"
         >
           Shoulder
         </text>
@@ -76,7 +76,7 @@ export default function ArmDiagram({ shoulderToElbow, shoulderToWrist, units }) 
           y1={armCenterY - armWidth/2 - 2.5}
           x2={elbowX}
           y2={armCenterY + armWidth/2 + 2.5}
-          className="stroke-secondary"
+          stroke="#EC4899"
           strokeWidth="0.6"
           strokeLinecap="round"
         />
@@ -86,7 +86,7 @@ export default function ArmDiagram({ shoulderToElbow, shoulderToWrist, units }) 
           textAnchor="middle"
           fontSize="3"
           fontWeight="600"
-          className="fill-secondary"
+          fill="#EC4899"
         >
           Elbow
         </text>
@@ -97,7 +97,7 @@ export default function ArmDiagram({ shoulderToElbow, shoulderToWrist, units }) 
           y1={armCenterY - armWidth/2 - 3}
           x2={wristX}
           y2={armCenterY + armWidth/2 + 3}
-          className="stroke-accent"
+          stroke="#059669"
           strokeWidth="0.8"
           strokeLinecap="round"
         />
@@ -107,7 +107,7 @@ export default function ArmDiagram({ shoulderToElbow, shoulderToWrist, units }) 
           textAnchor="middle"
           fontSize="3"
           fontWeight="600"
-          className="fill-accent"
+          fill="#059669"
         >
           Wrist
         </text>
@@ -120,17 +120,17 @@ export default function ArmDiagram({ shoulderToElbow, shoulderToWrist, units }) 
               y1={armCenterY + armWidth/2 + 6}
               x2={elbowX}
               y2={armCenterY + armWidth/2 + 6}
-              className="stroke-secondary"
+              stroke="#EC4899"
               strokeWidth="0.2"
-              markerEnd="url(#arrowhead-secondary)"
-              markerStart="url(#arrowhead-secondary)"
+              markerEnd="url(#arrowhead-pink)"
+              markerStart="url(#arrowhead-pink)"
             />
             <text
               x={(shoulderX + elbowX) / 2}
               y={armCenterY + armWidth/2 + 10}
               textAnchor="middle"
               fontSize="2.5"
-              className="fill-secondary"
+              fill="#EC4899"
               fontWeight="500"
             >
               {shoulderToElbow} {units}
@@ -145,17 +145,17 @@ export default function ArmDiagram({ shoulderToElbow, shoulderToWrist, units }) 
               y1={armCenterY + armWidth/2 + 12}
               x2={wristX}
               y2={armCenterY + armWidth/2 + 12}
-              className="stroke-accent"
+              stroke="#059669"
               strokeWidth="0.2"
-              markerEnd="url(#arrowhead-accent)"
-              markerStart="url(#arrowhead-accent)"
+              markerEnd="url(#arrowhead-green)"
+              markerStart="url(#arrowhead-green)"
             />
             <text
               x={(shoulderX + wristX) / 2}
               y={armCenterY + armWidth/2 + 16}
               textAnchor="middle"
               fontSize="2.5"
-              className="fill-accent"
+              fill="#059669"
               fontWeight="500"
             >
               {shoulderToWrist} {units}
@@ -166,24 +166,24 @@ export default function ArmDiagram({ shoulderToElbow, shoulderToWrist, units }) 
         {/* Arrow markers */}
         <defs>
           <marker
-            id="arrowhead-secondary"
+            id="arrowhead-pink"
             markerWidth="1.5"
             markerHeight="1"
             refX="0.75"
             refY="0.5"
             orient="auto"
           >
-            <polygon points="0 0, 1.5 0.5, 0 1" className="fill-secondary" />
+            <polygon points="0 0, 1.5 0.5, 0 1" fill="#EC4899" />
           </marker>
           <marker
-            id="arrowhead-accent"
+            id="arrowhead-green"
             markerWidth="1.5"
             markerHeight="1"
             refX="0.75"
             refY="0.5"
             orient="auto"
           >
-            <polygon points="0 0, 1.5 0.5, 0 1" className="fill-accent" />
+            <polygon points="0 0, 1.5 0.5, 0 1" fill="#059669" />
           </marker>
         </defs>
       </svg>
