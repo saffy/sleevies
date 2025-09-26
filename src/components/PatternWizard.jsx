@@ -312,7 +312,7 @@ function CustomizationStep({ units, setUnits }) {
       <div className="space-y-6">
         <div>
           <div className="flex items-center mb-2">
-            <label className="block text-sm font-medium text-gray-700">
+            <label htmlFor="easeType" className="block text-sm font-medium text-gray-700">
               Ease Amount
             </label>
             <div className="relative group ml-2">
@@ -332,6 +332,8 @@ function CustomizationStep({ units, setUnits }) {
             </div>
           </div>
           <select 
+            id="easeType"
+            name="easeType"
             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-hidden focus:ring-2 focus:ring-orange-500"
             value={easeType}
             onChange={(e) => setEaseType(e.target.value)}
@@ -345,11 +347,13 @@ function CustomizationStep({ units, setUnits }) {
           
           {easeType === 'stretch' && (
             <div className="mt-3 p-3 bg-green-50 border border-green-200 rounded-md">
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="customNegativeEase" className="block text-sm font-medium text-gray-700 mb-2">
                 Negative Ease Percentage
               </label>
               <div className="flex items-center space-x-2">
                 <input
+                  id="customNegativeEase"
+                  name="customNegativeEase"
                   type="number"
                   min="0"
                   max="50"
@@ -373,10 +377,10 @@ function CustomizationStep({ units, setUnits }) {
         </div>
         
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label htmlFor="seamAllowance" className="block text-sm font-medium text-gray-700 mb-2">
             Seam Allowance
           </label>
-          <select className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-hidden focus:ring-2 focus:ring-orange-500">
+          <select id="seamAllowance" name="seamAllowance" className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-hidden focus:ring-2 focus:ring-orange-500">
             {seamAllowanceOptions.map(option => (
               <option key={option.value} value={option.value}>
                 {option.label}
