@@ -18,6 +18,7 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.13",
+    "@tailwindcss/vite": "^4.1.13",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@types/react": "^18.2.15",
@@ -36,7 +37,7 @@
     "postcss": "^8.4.24",
     "tailwindcss": "^4.1.13",
     "typescript": "^5.9.2",
-    "vite": "^4.4.5",
+    "vite": "^5.4.20",
     "vitest": "^0.34.0"
   }
 }
