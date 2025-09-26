@@ -10,6 +10,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `npm run lint` - Run ESLint to check code quality
 - `npm test` - Run tests using Vitest
 - `npm test:ui` - Run tests with Vitest UI interface
+- `npx playwright test` - Run Playwright e2e tests
 
 ## Project Architecture
 

@@ -169,7 +169,7 @@ function MeasurementsStep({ units, setUnits, measurements, setMeasurements, work
   }
 
   return (
-    <div>
+    <form>
       <div className="flex items-center justify-between mb-6">
         <h3 className="text-xl font-heading font-semibold">Enter Your Measurements</h3>
         
@@ -182,6 +182,7 @@ function MeasurementsStep({ units, setUnits, measurements, setMeasurements, work
             onClick={() => setUnits(units === 'inches' ? 'cm' : 'inches')}
             className={`relative w-12 h-6 rounded-full transition-colors ${units === 'inches' ? 'bg-gray-300' : 'bg-green-600'}`}
             whileTap={{ scale: 0.95 }}
+            type="button"
           >
             <motion.div
               className="absolute w-5 h-5 bg-white rounded-full top-0.5 shadow-md"
@@ -199,10 +200,12 @@ function MeasurementsStep({ units, setUnits, measurements, setMeasurements, work
         {/* Left column - Input fields */}
         <div className="space-y-6">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="shoulderToElbow" className="block text-sm font-medium text-gray-700 mb-2">
               Shoulder to Elbow ({units})
             </label>
             <input
+              id="shoulderToElbow"
+              name="shoulderToElbow"
               type="number"
               value={measurements.shoulderToElbow}
               onChange={(e) => handleMeasurementChange('shoulderToElbow', e.target.value)}
@@ -216,10 +219,12 @@ function MeasurementsStep({ units, setUnits, measurements, setMeasurements, work
           </div>
           
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="shoulderToWrist" className="block text-sm font-medium text-gray-700 mb-2">
               Shoulder to Wrist ({units})
             </label>
             <input
+              id="shoulderToWrist"
+              name="shoulderToWrist"
               type="number"
               value={measurements.shoulderToWrist}
               onChange={(e) => handleMeasurementChange('shoulderToWrist', e.target.value)}
@@ -244,7 +249,7 @@ function MeasurementsStep({ units, setUnits, measurements, setMeasurements, work
       </div>
 
       <MeasurementTips />
-    </div>
+    </form>
   )
 }
 
