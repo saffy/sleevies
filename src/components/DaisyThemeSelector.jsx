@@ -7,10 +7,10 @@ export default function DaisyThemeSelector() {
   const [currentTheme, setCurrentTheme] = useState('sleevies')
 
   const themes = [
-    { name: 'Sleevies', value: 'sleevies', colors: ['#420c14', '#f2404f', '#b1ae81'] },
-    { name: 'Sleevies Muted', value: 'sleevies-muted', colors: ['#2f1e20', '#b67c81', '#a1a091'] },
-    { name: 'Sleevies Cool', value: 'sleevies-cool', colors: ['#320d18', '#c63154', '#a0856e'] },
-    { name: 'Silk Variant', value: 'silk-variant', colors: ['#3b3b49', '#3b3b49', '#3b3b49'] },
+    { name: 'Default', value: 'sleevies', colors: ['#420c14', '#f2404f', '#b1ae81'] },
+    { name: 'Muted', value: 'sleevies-muted', colors: ['#2f1e20', '#b67c81', '#a1a091'] },
+    { name: 'Cool', value: 'sleevies-cool', colors: ['#320d18', '#c63154', '#a0856e'] },
+    { name: 'Dark', value: 'sleevies-dark', colors: ['#232329', '#e2a6b3', '#7a9e6d'] },
   ]
 
   // Set initial theme and listen for changes

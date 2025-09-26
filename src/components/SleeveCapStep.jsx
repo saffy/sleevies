@@ -31,8 +31,8 @@ export default function SleeveCapStep({ units, sleeveCapMeasurements, setSleeveC
             whileHover={{ scale: 1.02 }}
             className={`border-2 rounded-lg p-4 cursor-pointer transition-colors ${
               sleeveCapMeasurements.measurementType === 'bust' 
-                ? 'border-orange-300 bg-orange-50' 
-                : 'border-gray-200 hover:border-gray-300'
+                ? 'border-primary bg-base-200' 
+                : 'border-base-300 hover:border-base-content/20'
             }`}
             onClick={() => handleMeasurementChange('measurementType', 'bust')}
           >
@@ -53,8 +53,8 @@ export default function SleeveCapStep({ units, sleeveCapMeasurements, setSleeveC
             whileHover={{ scale: 1.02 }}
             className={`border-2 rounded-lg p-4 cursor-pointer transition-colors ${
               sleeveCapMeasurements.measurementType === 'manual' 
-                ? 'border-orange-300 bg-orange-50' 
-                : 'border-gray-200 hover:border-gray-300'
+                ? 'border-primary bg-base-200' 
+                : 'border-base-300 hover:border-base-content/20'
             }`}
             onClick={() => handleMeasurementChange('measurementType', 'manual')}
           >
@@ -81,7 +81,7 @@ export default function SleeveCapStep({ units, sleeveCapMeasurements, setSleeveC
               type="number"
               value={sleeveCapMeasurements.bust}
               onChange={e => handleMeasurementChange('bust', e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-hidden focus:ring-2 focus:ring-orange-500"
+              className="w-full px-3 py-2 border border-base-300 rounded-md focus:outline-hidden focus:ring-2 focus:ring-primary"
               placeholder={bustPlaceholders[units]}
               step="0.1"
             />
@@ -96,7 +96,7 @@ export default function SleeveCapStep({ units, sleeveCapMeasurements, setSleeveC
                 type="number"
                 value={sleeveCapMeasurements.sleeveCapWidth}
                 onChange={e => handleMeasurementChange('sleeveCapWidth', e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-hidden focus:ring-2 focus:ring-orange-500"
+                className="w-full px-3 py-2 border border-base-300 rounded-md focus:outline-hidden focus:ring-2 focus:ring-primary"
                 placeholder={sleeveCapPlaceholders[units].width}
                 step="0.1"
               />
@@ -109,7 +109,7 @@ export default function SleeveCapStep({ units, sleeveCapMeasurements, setSleeveC
                 type="number"
                 value={sleeveCapMeasurements.sleeveCapHeight}
                 onChange={e => handleMeasurementChange('sleeveCapHeight', e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-hidden focus:ring-2 focus:ring-orange-500"
+                className="w-full px-3 py-2 border border-base-300 rounded-md focus:outline-hidden focus:ring-2 focus:ring-primary"
                 placeholder={sleeveCapPlaceholders[units].height}
                 step="0.1"
               />

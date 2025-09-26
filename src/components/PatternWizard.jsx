@@ -178,18 +178,12 @@ function MeasurementsStep({ units, setUnits, measurements, setMeasurements, work
           <span className={`text-sm ${units === 'inches' ? 'text-primary font-medium' : 'text-base-content/60'}`}>
             Inches
           </span>
-          <motion.button
-            onClick={() => setUnits(units === 'inches' ? 'cm' : 'inches')}
-            className={`relative w-12 h-6 rounded-full transition-colors ${units === 'inches' ? 'bg-gray-300' : 'bg-green-600'}`}
-            whileTap={{ scale: 0.95 }}
-            type="button"
-          >
-            <motion.div
-              className="absolute w-5 h-5 bg-white rounded-full top-0.5 shadow-md"
-              animate={{ x: units === 'inches' ? 2 : 26 }}
-              transition={{ type: "spring", stiffness: 500, damping: 30 }}
-            />
-          </motion.button>
+          <input 
+            type="checkbox" 
+            className="toggle toggle-primary" 
+            checked={units === 'cm'}
+            onChange={() => setUnits(units === 'inches' ? 'cm' : 'inches')}
+          />
           <span className={`text-sm ${units === 'cm' ? 'text-primary font-medium' : 'text-base-content/60'}`}>
             CM
           </span>
@@ -209,7 +203,7 @@ function MeasurementsStep({ units, setUnits, measurements, setMeasurements, work
               type="number"
               value={measurements.shoulderToElbow}
               onChange={(e) => handleMeasurementChange('shoulderToElbow', e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-hidden focus:ring-2 focus:ring-orange-500"
+              className="w-full px-3 py-2 border border-base-300 rounded-md focus:outline-hidden focus:ring-2 focus:ring-primary"
               placeholder={placeholders[units].shoulderToElbow}
               step="0.1"
             />
@@ -228,7 +222,7 @@ function MeasurementsStep({ units, setUnits, measurements, setMeasurements, work
               type="number"
               value={measurements.shoulderToWrist}
               onChange={(e) => handleMeasurementChange('shoulderToWrist', e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-hidden focus:ring-2 focus:ring-orange-500"
+              className="w-full px-3 py-2 border border-base-300 rounded-md focus:outline-hidden focus:ring-2 focus:ring-primary"
               placeholder={placeholders[units].shoulderToWrist}
               step="0.1"
             />
@@ -293,17 +287,12 @@ function CustomizationStep({ units, setUnits }) {
           <span className={`text-sm ${units === 'inches' ? 'text-primary font-medium' : 'text-base-content/60'}`}>
             Inches
           </span>
-          <motion.button
-            onClick={() => setUnits(units === 'inches' ? 'cm' : 'inches')}
-            className={`relative w-12 h-6 rounded-full transition-colors ${units === 'inches' ? 'bg-gray-300' : 'bg-green-600'}`}
-            whileTap={{ scale: 0.95 }}
-          >
-            <motion.div
-              className="absolute w-5 h-5 bg-white rounded-full top-0.5 shadow-md"
-              animate={{ x: units === 'inches' ? 2 : 26 }}
-              transition={{ type: "spring", stiffness: 500, damping: 30 }}
-            />
-          </motion.button>
+          <input 
+            type="checkbox" 
+            className="toggle toggle-primary" 
+            checked={units === 'cm'}
+            onChange={() => setUnits(units === 'inches' ? 'cm' : 'inches')}
+          />
           <span className={`text-sm ${units === 'cm' ? 'text-primary font-medium' : 'text-base-content/60'}`}>
             CM
           </span>
@@ -332,7 +321,7 @@ function CustomizationStep({ units, setUnits }) {
             </div>
           </div>
           <select 
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-hidden focus:ring-2 focus:ring-orange-500"
+            className="w-full px-3 py-2 border border-base-300 rounded-md focus:outline-hidden focus:ring-2 focus:ring-primary"
             value={easeType}
             onChange={(e) => setEaseType(e.target.value)}
           >
@@ -356,7 +345,7 @@ function CustomizationStep({ units, setUnits }) {
                   step="1"
                   value={customNegativeEase}
                   onChange={(e) => setCustomNegativeEase(e.target.value)}
-                  className="w-20 px-2 py-1 border border-gray-300 rounded-sm focus:outline-hidden focus:ring-2 focus:ring-orange-500"
+                  className="w-20 px-2 py-1 border border-base-300 rounded-sm focus:outline-hidden focus:ring-2 focus:ring-primary"
                   placeholder="15"
                 />
                 <span className="text-sm text-gray-600">%</span>
@@ -376,7 +365,7 @@ function CustomizationStep({ units, setUnits }) {
           <label className="block text-sm font-medium text-gray-700 mb-2">
             Seam Allowance
           </label>
-          <select className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-hidden focus:ring-2 focus:ring-orange-500">
+          <select className="w-full px-3 py-2 border border-base-300 rounded-md focus:outline-hidden focus:ring-2 focus:ring-primary">
             {seamAllowanceOptions.map(option => (
               <option key={option.value} value={option.value}>
                 {option.label}

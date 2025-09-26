@@ -28,8 +28,8 @@ export default function ArmDiagram({ shoulderToElbow, shoulderToWrist, units }) 
   const armCenterY = canvasHeight / 2
 
   return (
-    <div className="bg-gray-50 rounded-lg p-6 border">
-      <h4 className="text-sm font-medium text-gray-700 mb-4 text-center">
+    <div className="bg-base-100 rounded-lg p-6 border border-base-300">
+      <h4 className="text-sm font-medium text-base-content mb-4 text-center">
         Arm Measurement Visualization
       </h4>
       
@@ -44,8 +44,7 @@ export default function ArmDiagram({ shoulderToElbow, shoulderToWrist, units }) 
           y={armCenterY - armWidth/2}
           width={armLength}
           height={armWidth}
-          fill="#E5E7EB"
-          stroke="#D1D5DB"
+          className="fill-base-200 stroke-base-300"
           strokeWidth="0.5"
           rx="2"
         />
@@ -56,7 +55,7 @@ export default function ArmDiagram({ shoulderToElbow, shoulderToWrist, units }) 
           y1={armCenterY - armWidth/2 - 3}
           x2={shoulderX}
           y2={armCenterY + armWidth/2 + 3}
-          stroke="#F2404F"
+          className="stroke-primary"
           strokeWidth="0.8"
           strokeLinecap="round"
         />
@@ -66,7 +65,7 @@ export default function ArmDiagram({ shoulderToElbow, shoulderToWrist, units }) 
           textAnchor="middle"
           fontSize="3"
           fontWeight="600"
-          fill="#F2404F"
+          className="fill-primary"
         >
           Shoulder
         </text>
@@ -77,7 +76,7 @@ export default function ArmDiagram({ shoulderToElbow, shoulderToWrist, units }) 
           y1={armCenterY - armWidth/2 - 2.5}
           x2={elbowX}
           y2={armCenterY + armWidth/2 + 2.5}
-          stroke="#EC4899"
+          className="stroke-secondary"
           strokeWidth="0.6"
           strokeLinecap="round"
         />
@@ -87,7 +86,7 @@ export default function ArmDiagram({ shoulderToElbow, shoulderToWrist, units }) 
           textAnchor="middle"
           fontSize="3"
           fontWeight="600"
-          fill="#EC4899"
+          className="fill-secondary"
         >
           Elbow
         </text>
@@ -98,7 +97,7 @@ export default function ArmDiagram({ shoulderToElbow, shoulderToWrist, units }) 
           y1={armCenterY - armWidth/2 - 3}
           x2={wristX}
           y2={armCenterY + armWidth/2 + 3}
-          stroke="#059669"
+          className="stroke-accent"
           strokeWidth="0.8"
           strokeLinecap="round"
         />
@@ -108,7 +107,7 @@ export default function ArmDiagram({ shoulderToElbow, shoulderToWrist, units }) 
           textAnchor="middle"
           fontSize="3"
           fontWeight="600"
-          fill="#059669"
+          className="fill-accent"
         >
           Wrist
         </text>
@@ -121,17 +120,17 @@ export default function ArmDiagram({ shoulderToElbow, shoulderToWrist, units }) 
               y1={armCenterY + armWidth/2 + 6}
               x2={elbowX}
               y2={armCenterY + armWidth/2 + 6}
-              stroke="#EC4899"
+              className="stroke-secondary"
               strokeWidth="0.2"
-              markerEnd="url(#arrowhead-pink)"
-              markerStart="url(#arrowhead-pink)"
+              markerEnd="url(#arrowhead-secondary)"
+              markerStart="url(#arrowhead-secondary)"
             />
             <text
               x={(shoulderX + elbowX) / 2}
               y={armCenterY + armWidth/2 + 10}
               textAnchor="middle"
               fontSize="2.5"
-              fill="#EC4899"
+              className="fill-secondary"
               fontWeight="500"
             >
               {shoulderToElbow} {units}
@@ -146,17 +145,17 @@ export default function ArmDiagram({ shoulderToElbow, shoulderToWrist, units }) 
               y1={armCenterY + armWidth/2 + 12}
               x2={wristX}
               y2={armCenterY + armWidth/2 + 12}
-              stroke="#059669"
+              className="stroke-accent"
               strokeWidth="0.2"
-              markerEnd="url(#arrowhead-green)"
-              markerStart="url(#arrowhead-green)"
+              markerEnd="url(#arrowhead-accent)"
+              markerStart="url(#arrowhead-accent)"
             />
             <text
               x={(shoulderX + wristX) / 2}
               y={armCenterY + armWidth/2 + 16}
               textAnchor="middle"
               fontSize="2.5"
-              fill="#059669"
+              className="fill-accent"
               fontWeight="500"
             >
               {shoulderToWrist} {units}
@@ -167,29 +166,29 @@ export default function ArmDiagram({ shoulderToElbow, shoulderToWrist, units }) 
         {/* Arrow markers */}
         <defs>
           <marker
-            id="arrowhead-pink"
+            id="arrowhead-secondary"
             markerWidth="1.5"
             markerHeight="1"
             refX="0.75"
             refY="0.5"
             orient="auto"
           >
-            <polygon points="0 0, 1.5 0.5, 0 1" fill="#EC4899" />
+            <polygon points="0 0, 1.5 0.5, 0 1" className="fill-secondary" />
           </marker>
           <marker
-            id="arrowhead-green"
+            id="arrowhead-accent"
             markerWidth="1.5"
             markerHeight="1"
             refX="0.75"
             refY="0.5"
             orient="auto"
           >
-            <polygon points="0 0, 1.5 0.5, 0 1" fill="#059669" />
+            <polygon points="0 0, 1.5 0.5, 0 1" className="fill-accent" />
           </marker>
         </defs>
       </svg>
       
-      <div className="mt-4 text-center text-xs text-gray-500">
+      <div className="mt-4 text-center text-xs text-base-content/60">
         The elbow position adjusts automatically based on your measurements
       </div>
     </div>
