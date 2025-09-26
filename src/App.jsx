@@ -1,23 +1,21 @@
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 import PatternWizard from './components/PatternWizard'
-import ThemeSelector from './components/ThemeSelector'
-import { ThemeProvider, useTheme } from './contexts/ThemeContext'
+import DaisyThemeSelector from './components/DaisyThemeSelector'
 
-function AppContent() {
-  const { theme } = useTheme()
+function App() {
   const [showWizard, setShowWizard] = useState(false)
 
   if (showWizard) {
     return (
-      <div className={`min-h-screen ${theme.background}`}>
-        <ThemeSelector />
+      <div className="min-h-screen bg-base-200">
+        <DaisyThemeSelector />
         <div className="container mx-auto px-4 py-8">
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => setShowWizard(false)}
-            className="mb-6 flex items-center space-x-2 text-gray-600 hover:text-gray-800 transition-colors"
+            className="mb-6 flex items-center space-x-2 text-base-content hover:text-primary transition-colors"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -31,8 +29,8 @@ function AppContent() {
   }
 
   return (
-    <div className={`min-h-screen ${theme.background}`}>
-      <ThemeSelector />
+    <div className="min-h-screen bg-base-200">
+      <DaisyThemeSelector />
       <div className="container mx-auto px-4 py-8">
         <motion.header
           initial={{ opacity: 0, y: -20 }}
@@ -40,10 +38,10 @@ function AppContent() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h1 className="text-5xl font-heading font-normal text-gray-800 dark:text-gray-100 mb-4">
+          <h1 className="text-5xl font-heading font-normal text-base-content mb-4">
             Sleevies
           </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+          <p className="text-xl text-base-content/70 max-w-2xl mx-auto">
             Create beautiful, printable sewing patterns with guided visual tools
           </p>
         </motion.header>
@@ -54,7 +52,7 @@ function AppContent() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="max-w-4xl mx-auto"
         >
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
+          <div className="bg-base-100 rounded-lg shadow-lg p-8">
             <div className="text-center">
               <motion.div
                 animate={{ 
@@ -68,7 +66,7 @@ function AppContent() {
                 }}
                 className="inline-block mb-6"
               >
-                <div className={`w-24 h-24 bg-gradient-to-br ${theme.primary.gradient} rounded-full mx-auto flex items-center justify-center`}>
+                <div className="w-24 h-24 bg-gradient-to-br from-primary to-secondary rounded-full mx-auto flex items-center justify-center">
                   <svg 
                     className="w-12 h-12 text-white" 
                     fill="none" 
@@ -85,10 +83,10 @@ function AppContent() {
                 </div>
               </motion.div>
               
-              <h2 className="text-3xl font-heading font-normal text-gray-800 dark:text-gray-100 mb-4">
+              <h2 className="text-3xl font-heading font-normal text-base-content mb-4">
                 Ready to Create
               </h2>
-              <p className="text-gray-600 dark:text-gray-300 mb-8">
+              <p className="text-base-content/70 mb-8">
                 Your pattern generation journey starts here. This modern, responsive application 
                 will guide you through creating professional sewing patterns.
               </p>
@@ -97,7 +95,7 @@ function AppContent() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setShowWizard(true)}
-                className={`bg-gradient-to-r ${theme.primary.gradientButton} text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:shadow-xl transition-shadow duration-300`}
+                className="btn btn-primary btn-lg rounded-full shadow-lg hover:shadow-xl transition-shadow duration-300"
               >
                 Get Started
               </motion.button>
@@ -106,14 +104,6 @@ function AppContent() {
         </motion.main>
       </div>
     </div>
-  )
-}
-
-function App() {
-  return (
-    <ThemeProvider>
-      <AppContent />
-    </ThemeProvider>
   )
 }
 
