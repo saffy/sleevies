@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { useState } from 'react'
 import ArmDiagram from './ArmDiagram'
 import MeasurementTips from './MeasurementTips'
+import SleeveCapStep from './SleeveCapStep.jsx'
 
 const steps = [
   { id: 1, title: 'Arm Measurements', description: 'Enter your arm measurements' },
@@ -104,7 +105,7 @@ export default function PatternWizard() {
         className="bg-base-100 rounded-lg shadow-lg p-8 mb-6"
       >
         {currentStep === 1 && <MeasurementsStep units={units} setUnits={setUnits} measurements={measurements} setMeasurements={setMeasurements} workingMeasurements={getWorkingMeasurements()} />}
-        {currentStep === 2 && <SleeveCapStep units={units} sleeveCapMeasurements={sleeveCapMeasurements} setSleeveCapMeasurements={setSleeveCapMeasurements} />}
+        {currentStep === 2 && <SleeveCapStep units={units} sleeveCapMeasurements={sleeveCapMeasurements} setSleeveCapMeasurements={setSleeveCapMeasurements} armMeasurements={getWorkingMeasurements()} />}
         {currentStep === 3 && <CustomizationStep units={units} setUnits={setUnits} />}
         {currentStep === 4 && <GenerateStep />}
       </motion.div>
@@ -243,145 +244,6 @@ function MeasurementsStep({ units, setUnits, measurements, setMeasurements, work
       </div>
 
       <MeasurementTips />
-    </div>
-  )
-}
-
-function SleeveCapStep({ units, sleeveCapMeasurements, setSleeveCapMeasurements }) {
-  const handleMeasurementChange = (field, value) => {
-    setSleeveCapMeasurements(prev => ({
-      ...prev,
-      [field]: value
-    }))
-  }
-
-  const bustPlaceholders = {
-    inches: '36',
-    cm: '92'
-  }
-
-  const sleeveCapPlaceholders = {
-    inches: { width: '14', height: '5' },
-    cm: { width: '36', height: '13' }
-  }
-
-  return (
-    <div>
-      <h3 className="text-xl font-heading font-semibold mb-6">Sleeve Cap Measurements</h3>
-      
-      <div className="mb-6">
-        <p className="text-gray-600 mb-4">
-          Choose how you'd like to set your sleeve cap dimensions:
-        </p>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-          <motion.div
-            whileHover={{ scale: 1.02 }}
-            className={`border-2 rounded-lg p-4 cursor-pointer transition-colors ${
-              sleeveCapMeasurements.measurementType === 'bust' 
-                ? 'border-orange-300 bg-orange-50' 
-                : 'border-gray-200 hover:border-gray-300'
-            }`}
-            onClick={() => handleMeasurementChange('measurementType', 'bust')}
-          >
-            <div className="flex items-center mb-2">
-              <input
-                type="radio"
-                checked={sleeveCapMeasurements.measurementType === 'bust'}
-                onChange={() => {}}
-                className="mr-2 text-primary"
-              />
-              <h4 className="font-medium">From Bust Measurement</h4>
-            </div>
-            <p className="text-sm text-gray-600">
-              We'll calculate sleeve cap dimensions from your bust measurement (recommended)
-            </p>
-          </motion.div>
-
-          <motion.div
-            whileHover={{ scale: 1.02 }}
-            className={`border-2 rounded-lg p-4 cursor-pointer transition-colors ${
-              sleeveCapMeasurements.measurementType === 'manual' 
-                ? 'border-orange-300 bg-orange-50' 
-                : 'border-gray-200 hover:border-gray-300'
-            }`}
-            onClick={() => handleMeasurementChange('measurementType', 'manual')}
-          >
-            <div className="flex items-center mb-2">
-              <input
-                type="radio"
-                checked={sleeveCapMeasurements.measurementType === 'manual'}
-                onChange={() => {}}
-                className="mr-2 text-primary"
-              />
-              <h4 className="font-medium">Manual Entry</h4>
-            </div>
-            <p className="text-sm text-gray-600">
-              Enter sleeve cap width and height directly
-            </p>
-          </motion.div>
-        </div>
-
-        {sleeveCapMeasurements.measurementType === 'bust' ? (
-          <div className="bg-orange-50 p-4 rounded-lg">
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Bust Measurement ({units})
-            </label>
-            <input
-              type="number"
-              value={sleeveCapMeasurements.bust}
-              onChange={(e) => handleMeasurementChange('bust', e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-hidden focus:ring-2 focus:ring-orange-500"
-              placeholder={bustPlaceholders[units]}
-              step="0.1"
-            />
-            <p className="text-xs text-base-content/60 mt-1">
-              Measure around the fullest part of your bust
-            </p>
-          </div>
-        ) : (
-          <div className="bg-green-50 p-4 rounded-lg space-y-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Sleeve Cap Width ({units})
-              </label>
-              <input
-                type="number"
-                value={sleeveCapMeasurements.sleeveCapWidth}
-                onChange={(e) => handleMeasurementChange('sleeveCapWidth', e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-hidden focus:ring-2 focus:ring-orange-500"
-                placeholder={sleeveCapPlaceholders[units].width}
-                step="0.1"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Sleeve Cap Height ({units})
-              </label>
-              <input
-                type="number"
-                value={sleeveCapMeasurements.sleeveCapHeight}
-                onChange={(e) => handleMeasurementChange('sleeveCapHeight', e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-hidden focus:ring-2 focus:ring-orange-500"
-                placeholder={sleeveCapPlaceholders[units].height}
-                step="0.1"
-              />
-            </div>
-            <p className="text-xs text-base-content/60">
-              Width: armpit to armpit across the back. Height: shoulder to armpit depth.
-            </p>
-          </div>
-        )}
-      </div>
-
-      <div className="mt-6 p-4 bg-gray-50 rounded-lg">
-        <h4 className="font-medium text-gray-800 mb-2">📏 About Sleeve Cap Measurements</h4>
-        <ul className="text-sm text-gray-700 space-y-1">
-          <li>• <strong>Bust measurement:</strong> We use this to calculate armhole circumference and derive sleeve cap dimensions</li>
-          <li>• <strong>Sleeve cap width:</strong> Determines how the sleeve attaches to the armhole</li>
-          <li>• <strong>Sleeve cap height:</strong> Controls the curve and fit of the sleeve at the shoulder</li>
-        </ul>
-      </div>
     </div>
   )
 }
