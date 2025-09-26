@@ -66,7 +66,7 @@ function App() {
                 }}
                 className="inline-block mb-6"
               >
-                <div className="w-24 h-24 bg-gradient-to-br from-primary to-secondary rounded-full mx-auto flex items-center justify-center">
+                <div className="w-24 h-24 bg-linear-to-br from-primary to-secondary rounded-full mx-auto flex items-center justify-center">
                   <svg 
                     className="w-12 h-12 text-white" 
                     fill="none" 

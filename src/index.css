@@ -1,7 +1,81 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import 'tailwindcss';
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap')
+layer(utilities);
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --color-sleevies-main-burgundy: #420c14;
+  --color-sleevies-main-coral: #f2404f;
+  --color-sleevies-main-sage: #b1ae81;
+  --color-sleevies-main-olive: #515a47;
+  --color-sleevies-main-charcoal: #444b4b;
+
+  --color-sleevies-muted-burgundy: #2f1e20;
+  --color-sleevies-muted-coral: #b67c81;
+  --color-sleevies-muted-sage: #a1a091;
+  --color-sleevies-muted-olive: #52554e;
+  --color-sleevies-muted-charcoal: #464949;
+
+  --color-sleevies-cool-burgundy: #320d18;
+  --color-sleevies-cool-coral: #c63154;
+  --color-sleevies-cool-sage: #a0856e;
+  --color-sleevies-cool-olive: #504a3e;
+  --color-sleevies-cool-charcoal: #45393a;
+
+  --font-sans: Inter, system-ui, sans-serif;
+  --font-heading: Ovo, serif;
+
+  --animate-fade-in: fadeIn 0.5s ease-in-out;
+  --animate-slide-up: slideUp 0.5s ease-out;
+  --animate-bounce-gentle: bounceGentle 2s ease-in-out infinite;
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  @keyframes slideUp {
+    0% {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  @keyframes bounceGentle {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-5px);
+    }
+  }
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
 
 body {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;

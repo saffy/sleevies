@@ -205,7 +205,7 @@ function MeasurementsStep({ units, setUnits, measurements, setMeasurements, work
               type="number"
               value={measurements.shoulderToElbow}
               onChange={(e) => handleMeasurementChange('shoulderToElbow', e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-hidden focus:ring-2 focus:ring-orange-500"
               placeholder={placeholders[units].shoulderToElbow}
               step="0.1"
             />
@@ -222,7 +222,7 @@ function MeasurementsStep({ units, setUnits, measurements, setMeasurements, work
               type="number"
               value={measurements.shoulderToWrist}
               onChange={(e) => handleMeasurementChange('shoulderToWrist', e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-hidden focus:ring-2 focus:ring-orange-500"
               placeholder={placeholders[units].shoulderToWrist}
               step="0.1"
             />
@@ -331,7 +331,7 @@ function SleeveCapStep({ units, sleeveCapMeasurements, setSleeveCapMeasurements 
               type="number"
               value={sleeveCapMeasurements.bust}
               onChange={(e) => handleMeasurementChange('bust', e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-hidden focus:ring-2 focus:ring-orange-500"
               placeholder={bustPlaceholders[units]}
               step="0.1"
             />
@@ -349,7 +349,7 @@ function SleeveCapStep({ units, sleeveCapMeasurements, setSleeveCapMeasurements 
                 type="number"
                 value={sleeveCapMeasurements.sleeveCapWidth}
                 onChange={(e) => handleMeasurementChange('sleeveCapWidth', e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-hidden focus:ring-2 focus:ring-orange-500"
                 placeholder={sleeveCapPlaceholders[units].width}
                 step="0.1"
               />
@@ -362,7 +362,7 @@ function SleeveCapStep({ units, sleeveCapMeasurements, setSleeveCapMeasurements 
                 type="number"
                 value={sleeveCapMeasurements.sleeveCapHeight}
                 onChange={(e) => handleMeasurementChange('sleeveCapHeight', e.target.value)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-hidden focus:ring-2 focus:ring-orange-500"
                 placeholder={sleeveCapPlaceholders[units].height}
                 step="0.1"
               />
@@ -465,7 +465,7 @@ function CustomizationStep({ units, setUnits }) {
             </div>
           </div>
           <select 
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-hidden focus:ring-2 focus:ring-orange-500"
             value={easeType}
             onChange={(e) => setEaseType(e.target.value)}
           >
@@ -489,7 +489,7 @@ function CustomizationStep({ units, setUnits }) {
                   step="1"
                   value={customNegativeEase}
                   onChange={(e) => setCustomNegativeEase(e.target.value)}
-                  className="w-20 px-2 py-1 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-orange-500"
+                  className="w-20 px-2 py-1 border border-gray-300 rounded-sm focus:outline-hidden focus:ring-2 focus:ring-orange-500"
                   placeholder="15"
                 />
                 <span className="text-sm text-gray-600">%</span>
@@ -509,7 +509,7 @@ function CustomizationStep({ units, setUnits }) {
           <label className="block text-sm font-medium text-gray-700 mb-2">
             Seam Allowance
           </label>
-          <select className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500">
+          <select className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-hidden focus:ring-2 focus:ring-orange-500">
             {seamAllowanceOptions.map(option => (
               <option key={option.value} value={option.value}>
                 {option.label}
@@ -594,7 +594,7 @@ function CustomizationStep({ units, setUnits }) {
                 </ol>
               </div>
 
-              <div className="bg-green-100 p-3 rounded mt-3">
+              <div className="bg-green-100 p-3 rounded-sm mt-3">
                 <p className="font-medium text-green-900 mb-1">💡 Pro Tips:</p>
                 <ul className="space-y-1 text-xs">
                   <li>• Don't use maximum stretch - aim for 50-70% of maximum</li>

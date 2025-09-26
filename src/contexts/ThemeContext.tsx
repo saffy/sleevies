@@ -75,7 +75,7 @@ export const themes: Record<string, Theme> = {
         gradient: "",
         gradientButton: ""
     },
-    background: 'bg-gradient-to-br from-red-50 to-green-50 dark:from-gray-900 dark:to-gray-800',
+    background: 'bg-linear-to-br from-red-50 to-green-50 dark:from-gray-900 dark:to-gray-800',
   },
   sleevies_muted: {
     name: 'Sleevies Muted',
@@ -115,7 +115,7 @@ export const themes: Record<string, Theme> = {
         gradient: "",
         gradientButton: ""
     },
-    background: 'bg-gradient-to-br from-rose-50 to-stone-50 dark:from-gray-900 dark:to-gray-800',
+    background: 'bg-linear-to-br from-rose-50 to-stone-50 dark:from-gray-900 dark:to-gray-800',
   },
   sleevies_cool: {
     name: 'Sleevies Cool',
@@ -155,7 +155,7 @@ export const themes: Record<string, Theme> = {
         gradient: "",
         gradientButton: ""
     },
-    background: 'bg-gradient-to-br from-pink-50 to-amber-50 dark:from-gray-900 dark:to-gray-800',
+    background: 'bg-linear-to-br from-pink-50 to-amber-50 dark:from-gray-900 dark:to-gray-800',
   },
 }
 
