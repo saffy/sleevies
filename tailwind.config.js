@@ -9,28 +9,40 @@ export default {
       colors: {
         theme: {
           primary: {
-            50: '#fff7ed',
-            100: '#ffedd5', 
-            200: '#fed7aa',
-            300: '#fdba74',
-            400: '#fb923c',
-            500: '#f97316', // Main orange
-            600: '#ea580c', // Darker orange for accessibility
-            700: '#c2410c',
-            800: '#9a3412',
-            900: '#7c2d12',
+            50: '#fef2f3',
+            100: '#fde6e8',
+            200: '#fad1d6',
+            300: '#f7aab4',
+            400: '#f2787e',
+            500: '#f2404f', // Folly - main coral red
+            600: '#e11d42', // Darker for accessibility
+            700: '#be123c',
+            800: '#9f1239',
+            900: '#881337',
           },
           secondary: {
-            50: '#f0fdf4',
-            100: '#dcfce7',
-            200: '#bbf7d0', 
-            300: '#86efac',
-            400: '#4ade80',
-            500: '#22c55e', // Main sage green
-            600: '#16a34a', // Darker green for accessibility  
-            700: '#15803d',
-            800: '#166534',
-            900: '#14532d',
+            50: '#f7f7f2',
+            100: '#eeede5',
+            200: '#dddbc9',
+            300: '#c8c5a8',
+            400: '#b1ae81', // Sage - main color
+            500: '#9fa078',
+            600: '#8a8763',
+            700: '#716d52',
+            800: '#5c5944',
+            900: '#4c4839',
+          },
+          accent: {
+            50: '#f8f8f8',
+            100: '#eeeeee',
+            200: '#dcdcdc',
+            300: '#b8b8b8',
+            400: '#8d8d8d',
+            500: '#6b6b6b',
+            600: '#515a47', // Ebony - dark olive
+            700: '#444b4b', // Outer space - charcoal
+            800: '#420c14', // Chocolate cosmos - burgundy
+            900: '#2d0509',
           },
         },
       },
