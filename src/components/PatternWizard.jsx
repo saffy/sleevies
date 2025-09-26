@@ -1,11 +1,13 @@
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 import ArmDiagram from './ArmDiagram'
+import MeasurementTips from './MeasurementTips'
 
 const steps = [
-  { id: 1, title: 'Measurements', description: 'Enter your measurements' },
-  { id: 2, title: 'Customization', description: 'Customize your pattern' },
-  { id: 3, title: 'Generate', description: 'Create your pattern' },
+  { id: 1, title: 'Arm Measurements', description: 'Enter your arm measurements' },
+  { id: 2, title: 'Sleeve Cap', description: 'Set sleeve cap dimensions' },
+  { id: 3, title: 'Customization', description: 'Customize your pattern' },
+  { id: 4, title: 'Generate', description: 'Create your pattern' },
 ]
 
 export default function PatternWizard() {
@@ -15,6 +17,39 @@ export default function PatternWizard() {
     shoulderToElbow: '',
     shoulderToWrist: ''
   })
+  
+  const [sleeveCapMeasurements, setSleeveCapMeasurements] = useState({
+    measurementType: 'bust', // 'bust' or 'manual'
+    bust: '',
+    sleeveCapWidth: '',
+    sleeveCapHeight: ''
+  })
+
+  // Validation functions
+  const canProceedFromStep1 = () => {
+    return measurements.shoulderToElbow && measurements.shoulderToWrist
+  }
+  
+  const canProceedFromStep2 = () => {
+    if (sleeveCapMeasurements.measurementType === 'bust') {
+      return sleeveCapMeasurements.bust
+    } else {
+      return sleeveCapMeasurements.sleeveCapWidth && sleeveCapMeasurements.sleeveCapHeight
+    }
+  }
+  
+  // Get default measurements from placeholders if none entered
+  const getWorkingMeasurements = () => {
+    const placeholders = {
+      inches: { shoulderToElbow: '13', shoulderToWrist: '24' },
+      cm: { shoulderToElbow: '33', shoulderToWrist: '61' }
+    }
+    
+    return {
+      shoulderToElbow: measurements.shoulderToElbow || placeholders[units].shoulderToElbow,
+      shoulderToWrist: measurements.shoulderToWrist || placeholders[units].shoulderToWrist
+    }
+  }
 
   return (
     <div className="max-w-4xl mx-auto p-6">
@@ -68,9 +103,10 @@ export default function PatternWizard() {
         exit={{ opacity: 0, x: -20 }}
         className="bg-white rounded-lg shadow-lg p-8 mb-6"
       >
-        {currentStep === 1 && <MeasurementsStep units={units} setUnits={setUnits} measurements={measurements} setMeasurements={setMeasurements} />}
-        {currentStep === 2 && <CustomizationStep />}
-        {currentStep === 3 && <GenerateStep />}
+        {currentStep === 1 && <MeasurementsStep units={units} setUnits={setUnits} measurements={measurements} setMeasurements={setMeasurements} workingMeasurements={getWorkingMeasurements()} />}
+        {currentStep === 2 && <SleeveCapStep units={units} sleeveCapMeasurements={sleeveCapMeasurements} setSleeveCapMeasurements={setSleeveCapMeasurements} />}
+        {currentStep === 3 && <CustomizationStep units={units} setUnits={setUnits} />}
+        {currentStep === 4 && <GenerateStep />}
       </motion.div>
 
       {/* Navigation */}
@@ -92,10 +128,20 @@ export default function PatternWizard() {
         <motion.button
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          onClick={() => setCurrentStep(Math.min(3, currentStep + 1))}
-          disabled={currentStep === 3}
+          onClick={() => {
+            if (currentStep === 1 && !canProceedFromStep1()) return
+            if (currentStep === 2 && !canProceedFromStep2()) return
+            setCurrentStep(Math.min(4, currentStep + 1))
+          }}
+          disabled={
+            currentStep === 4 || 
+            (currentStep === 1 && !canProceedFromStep1()) ||
+            (currentStep === 2 && !canProceedFromStep2())
+          }
           className={`px-6 py-2 rounded-lg font-medium ${
-            currentStep === 3
+            currentStep === 4 || 
+            (currentStep === 1 && !canProceedFromStep1()) ||
+            (currentStep === 2 && !canProceedFromStep2())
               ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
               : 'bg-purple-500 text-white hover:bg-purple-600'
           }`}
@@ -108,7 +154,7 @@ export default function PatternWizard() {
 }
 
 
-function MeasurementsStep({ units, setUnits, measurements, setMeasurements }) {
+function MeasurementsStep({ units, setUnits, measurements, setMeasurements, workingMeasurements }) {
   const handleMeasurementChange = (field, value) => {
     setMeasurements(prev => ({
       ...prev,
@@ -189,60 +235,378 @@ function MeasurementsStep({ units, setUnits, measurements, setMeasurements }) {
         {/* Right column - Visual diagram */}
         <div>
           <ArmDiagram 
-            shoulderToElbow={measurements.shoulderToElbow}
-            shoulderToWrist={measurements.shoulderToWrist}
+            shoulderToElbow={workingMeasurements.shoulderToElbow}
+            shoulderToWrist={workingMeasurements.shoulderToWrist}
             units={units}
           />
         </div>
       </div>
 
-      <div className="mt-6 p-4 bg-blue-50 rounded-lg">
-        <h4 className="font-medium text-blue-800 mb-2">📏 How to Measure</h4>
-        <ul className="text-sm text-blue-700 space-y-1">
-          <li>• <strong>Shoulder to Elbow:</strong> With your arm relaxed at your side, measure from the top of your shoulder down to your elbow</li>
-          <li>• <strong>Shoulder to Wrist:</strong> Continue measuring from shoulder all the way down to your wrist bone</li>
-          <li>• Keep the measuring tape straight along the outside of your arm</li>
-          <li>• Have someone help you measure for best accuracy</li>
+      <MeasurementTips />
+    </div>
+  )
+}
+
+function SleeveCapStep({ units, sleeveCapMeasurements, setSleeveCapMeasurements }) {
+  const handleMeasurementChange = (field, value) => {
+    setSleeveCapMeasurements(prev => ({
+      ...prev,
+      [field]: value
+    }))
+  }
+
+  const bustPlaceholders = {
+    inches: '36',
+    cm: '92'
+  }
+
+  const sleeveCapPlaceholders = {
+    inches: { width: '14', height: '5' },
+    cm: { width: '36', height: '13' }
+  }
+
+  return (
+    <div>
+      <h3 className="text-xl font-semibold mb-6">Sleeve Cap Measurements</h3>
+      
+      <div className="mb-6">
+        <p className="text-gray-600 mb-4">
+          Choose how you'd like to set your sleeve cap dimensions:
+        </p>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+          <motion.div
+            whileHover={{ scale: 1.02 }}
+            className={`border-2 rounded-lg p-4 cursor-pointer transition-colors ${
+              sleeveCapMeasurements.measurementType === 'bust' 
+                ? 'border-purple-300 bg-purple-50' 
+                : 'border-gray-200 hover:border-gray-300'
+            }`}
+            onClick={() => handleMeasurementChange('measurementType', 'bust')}
+          >
+            <div className="flex items-center mb-2">
+              <input
+                type="radio"
+                checked={sleeveCapMeasurements.measurementType === 'bust'}
+                onChange={() => {}}
+                className="mr-2 text-purple-500"
+              />
+              <h4 className="font-medium">From Bust Measurement</h4>
+            </div>
+            <p className="text-sm text-gray-600">
+              We'll calculate sleeve cap dimensions from your bust measurement (recommended)
+            </p>
+          </motion.div>
+
+          <motion.div
+            whileHover={{ scale: 1.02 }}
+            className={`border-2 rounded-lg p-4 cursor-pointer transition-colors ${
+              sleeveCapMeasurements.measurementType === 'manual' 
+                ? 'border-purple-300 bg-purple-50' 
+                : 'border-gray-200 hover:border-gray-300'
+            }`}
+            onClick={() => handleMeasurementChange('measurementType', 'manual')}
+          >
+            <div className="flex items-center mb-2">
+              <input
+                type="radio"
+                checked={sleeveCapMeasurements.measurementType === 'manual'}
+                onChange={() => {}}
+                className="mr-2 text-purple-500"
+              />
+              <h4 className="font-medium">Manual Entry</h4>
+            </div>
+            <p className="text-sm text-gray-600">
+              Enter sleeve cap width and height directly
+            </p>
+          </motion.div>
+        </div>
+
+        {sleeveCapMeasurements.measurementType === 'bust' ? (
+          <div className="bg-blue-50 p-4 rounded-lg">
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Bust Measurement ({units})
+            </label>
+            <input
+              type="number"
+              value={sleeveCapMeasurements.bust}
+              onChange={(e) => handleMeasurementChange('bust', e.target.value)}
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+              placeholder={bustPlaceholders[units]}
+              step="0.1"
+            />
+            <p className="text-xs text-gray-500 mt-1">
+              Measure around the fullest part of your bust
+            </p>
+          </div>
+        ) : (
+          <div className="bg-pink-50 p-4 rounded-lg space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Sleeve Cap Width ({units})
+              </label>
+              <input
+                type="number"
+                value={sleeveCapMeasurements.sleeveCapWidth}
+                onChange={(e) => handleMeasurementChange('sleeveCapWidth', e.target.value)}
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+                placeholder={sleeveCapPlaceholders[units].width}
+                step="0.1"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Sleeve Cap Height ({units})
+              </label>
+              <input
+                type="number"
+                value={sleeveCapMeasurements.sleeveCapHeight}
+                onChange={(e) => handleMeasurementChange('sleeveCapHeight', e.target.value)}
+                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+                placeholder={sleeveCapPlaceholders[units].height}
+                step="0.1"
+              />
+            </div>
+            <p className="text-xs text-gray-500">
+              Width: armpit to armpit across the back. Height: shoulder to armpit depth.
+            </p>
+          </div>
+        )}
+      </div>
+
+      <div className="mt-6 p-4 bg-gray-50 rounded-lg">
+        <h4 className="font-medium text-gray-800 mb-2">📏 About Sleeve Cap Measurements</h4>
+        <ul className="text-sm text-gray-700 space-y-1">
+          <li>• <strong>Bust measurement:</strong> We use this to calculate armhole circumference and derive sleeve cap dimensions</li>
+          <li>• <strong>Sleeve cap width:</strong> Determines how the sleeve attaches to the armhole</li>
+          <li>• <strong>Sleeve cap height:</strong> Controls the curve and fit of the sleeve at the shoulder</li>
         </ul>
       </div>
     </div>
   )
 }
 
-function CustomizationStep() {
+function CustomizationStep({ units, setUnits }) {
+  const [easeType, setEaseType] = useState('regular')
+  const [customNegativeEase, setCustomNegativeEase] = useState('')
+  const [showStretchGuide, setShowStretchGuide] = useState(false)
+  const easeOptions = units === 'inches' 
+    ? [
+        { value: 'fitted', label: 'Fitted (0-1 inches)', description: 'Close-fitting with minimal ease' },
+        { value: 'regular', label: 'Regular (1-2 inches)', description: 'Comfortable fit with standard ease' },
+        { value: 'loose', label: 'Loose (2-3 inches)', description: 'Relaxed fit with generous ease' },
+        { value: 'stretch', label: 'Stretch Fabric (Negative ease)', description: 'For knits and stretch fabrics' }
+      ]
+    : [
+        { value: 'fitted', label: 'Fitted (0-2.5 cm)', description: 'Close-fitting with minimal ease' },
+        { value: 'regular', label: 'Regular (2.5-5 cm)', description: 'Comfortable fit with standard ease' },
+        { value: 'loose', label: 'Loose (5-7.5 cm)', description: 'Relaxed fit with generous ease' },
+        { value: 'stretch', label: 'Stretch Fabric (Negative ease)', description: 'For knits and stretch fabrics' }
+      ]
+
+  const seamAllowanceOptions = units === 'inches'
+    ? [
+        { value: '0.375', label: '3/8 inch' },
+        { value: '0.5', label: '1/2 inch' },
+        { value: '0.625', label: '5/8 inch' }
+      ]
+    : [
+        { value: '1', label: '1 cm' },
+        { value: '1.5', label: '1.5 cm' },
+        { value: '2', label: '2 cm' }
+      ]
+
   return (
     <div>
-      <h3 className="text-xl font-semibold mb-4">Customize Your Pattern</h3>
+      <div className="flex items-center justify-between mb-6">
+        <h3 className="text-xl font-semibold">Customize Your Pattern</h3>
+        
+        {/* Unit Toggle */}
+        <div className="flex items-center space-x-3">
+          <span className={`text-sm ${units === 'inches' ? 'text-purple-600 font-medium' : 'text-gray-500'}`}>
+            Inches
+          </span>
+          <motion.button
+            onClick={() => setUnits(units === 'inches' ? 'cm' : 'inches')}
+            className={`relative w-12 h-6 rounded-full transition-colors ${units === 'inches' ? 'bg-gray-300' : 'bg-purple-500'}`}
+            whileTap={{ scale: 0.95 }}
+          >
+            <motion.div
+              className="absolute w-5 h-5 bg-white rounded-full top-0.5 shadow-md"
+              animate={{ x: units === 'inches' ? 2 : 26 }}
+              transition={{ type: "spring", stiffness: 500, damping: 30 }}
+            />
+          </motion.button>
+          <span className={`text-sm ${units === 'cm' ? 'text-purple-600 font-medium' : 'text-gray-500'}`}>
+            CM
+          </span>
+        </div>
+      </div>
       <div className="space-y-6">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-2">
-            Ease Amount
-          </label>
-          <select className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500">
-            <option>Fitted (0-1 inches)</option>
-            <option>Regular (1-2 inches)</option>
-            <option>Loose (2-3 inches)</option>
+          <div className="flex items-center mb-2">
+            <label className="block text-sm font-medium text-gray-700">
+              Ease Amount
+            </label>
+            <div className="relative group ml-2">
+              <svg 
+                className="w-4 h-4 text-gray-400 cursor-help hover:text-gray-600" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <circle cx="12" cy="12" r="10" strokeWidth="2" />
+                <path d="m9,9 2.5,0 0,7M13,6.5c0,0.83 -0.67,1.5 -1.5,1.5s-1.5,-0.67 -1.5,-1.5 0.67,-1.5 1.5,-1.5 1.5,0.67 1.5,1.5" strokeWidth="2" />
+              </svg>
+              <div className="invisible group-hover:visible absolute z-10 w-64 p-2 mt-1 text-xs text-white bg-gray-800 rounded-md shadow-lg -translate-x-1/2 left-1/2">
+                <strong>Ease:</strong> Extra room added to a garment beyond your body measurements. Positive ease = looser fit, negative ease = tighter fit (for stretch fabrics).
+                <div className="absolute top-[-4px] left-1/2 transform -translate-x-1/2 w-2 h-2 bg-gray-800 rotate-45"></div>
+              </div>
+            </div>
+          </div>
+          <select 
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"
+            value={easeType}
+            onChange={(e) => setEaseType(e.target.value)}
+          >
+            {easeOptions.map(option => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
           </select>
+          
+          {easeType === 'stretch' && (
+            <div className="mt-3 p-3 bg-pink-50 border border-pink-200 rounded-md">
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Negative Ease Percentage
+              </label>
+              <div className="flex items-center space-x-2">
+                <input
+                  type="number"
+                  min="0"
+                  max="50"
+                  step="1"
+                  value={customNegativeEase}
+                  onChange={(e) => setCustomNegativeEase(e.target.value)}
+                  className="w-20 px-2 py-1 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-purple-500"
+                  placeholder="15"
+                />
+                <span className="text-sm text-gray-600">%</span>
+              </div>
+              <p className="text-xs text-gray-500 mt-1">
+                Enter the percentage of negative ease for your stretch fabric (typically 10-25%)
+              </p>
+            </div>
+          )}
+          
+          <p className="text-xs text-gray-500 mt-1">
+            Choose "Stretch Fabric" for knits, jersey, or any fabric with stretch
+          </p>
         </div>
+        
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
             Seam Allowance
           </label>
           <select className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500">
-            <option>3/8 inch</option>
-            <option>1/2 inch</option>
-            <option>5/8 inch</option>
+            {seamAllowanceOptions.map(option => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
           </select>
+          <p className="text-xs text-gray-500 mt-1">
+            Amount of extra fabric added around the pattern for sewing
+          </p>
         </div>
-        <div>
-          <label className="flex items-center">
-            <input
-              type="checkbox"
-              className="rounded border-gray-300 text-purple-500 focus:ring-purple-500"
-            />
-            <span className="ml-2 text-sm text-gray-700">Include cutting layout guide</span>
-          </label>
+      </div>
+      
+      <div className="mt-6 space-y-4">
+        <div className="p-4 bg-purple-50 rounded-lg">
+          <h4 className="font-medium text-purple-800 mb-2">🧵 Fabric Tips</h4>
+          <ul className="text-sm text-purple-700 space-y-1">
+            <li>• <strong>Woven fabrics:</strong> Choose Fitted, Regular, or Loose ease</li>
+            <li>• <strong>Stretch fabrics:</strong> Select "Stretch Fabric" for negative ease</li>
+            <li>• <strong>Seam allowance:</strong> 5/8" (1.5cm) is standard for most garments</li>
+          </ul>
         </div>
+
+        {easeType === 'stretch' && (
+          <div className="p-4 bg-blue-50 rounded-lg border-l-4 border-blue-400">
+            <div className="flex items-center justify-between mb-3">
+              <h4 className="font-medium text-blue-800">📐 How to Test Your Fabric Stretch</h4>
+              <motion.button
+                onClick={() => setShowStretchGuide(!showStretchGuide)}
+                className="flex items-center space-x-2 text-blue-600 hover:text-blue-800 transition-colors"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                <span className="text-sm font-medium">
+                  {showStretchGuide ? 'Hide Guide' : 'Show Guide'}
+                </span>
+                <motion.svg
+                  className="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  animate={{ rotate: showStretchGuide ? 180 : 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </motion.svg>
+              </motion.button>
+            </div>
+            
+            {showStretchGuide && (
+              <motion.div 
+                className="space-y-4 text-sm text-blue-700"
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: 'auto' }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.3 }}
+              >
+              <div>
+                <h5 className="font-semibold mb-2">Step 1: Measure Fabric Stretch Percentage</h5>
+                <ol className="space-y-1 ml-4">
+                  <li>1. Cut a 10cm (4") square of your fabric</li>
+                  <li>2. Mark the relaxed width (should be 10cm)</li>
+                  <li>3. Stretch the fabric gently until snug (don't overstretch)</li>
+                  <li>4. Measure the stretched width (e.g., 21cm)</li>
+                  <li>5. Calculate: (stretched ÷ relaxed) × 100 = stretch % (21÷10 = 210%)</li>
+                </ol>
+              </div>
+
+              <div>
+                <h5 className="font-semibold mb-2">Step 2: Calculate Maximum Negative Ease</h5>
+                <p>Maximum negative ease = (relaxed ÷ stretched) × 100</p>
+                <p className="text-xs">Example: 10÷21 = 47% maximum negative ease</p>
+              </div>
+
+              <div>
+                <h5 className="font-semibold mb-2">Step 3: Audition Your Fabric 🎭</h5>
+                <ol className="space-y-1 ml-4">
+                  <li>1. Wrap unstretched fabric around your arm, mark the circumference</li>
+                  <li>2. Wrap stretched fabric around your arm at comfortable tension</li>
+                  <li>3. Calculate: ((unstretched - stretched) ÷ unstretched) × 100 = negative ease %</li>
+                  <li>4. Check that fabric doesn't go see-through or feel too tight</li>
+                  <li>5. Use this percentage (typically 10-25%, not the maximum)</li>
+                </ol>
+              </div>
+
+              <div className="bg-blue-100 p-3 rounded mt-3">
+                <p className="font-medium text-blue-900 mb-1">💡 Pro Tips:</p>
+                <ul className="space-y-1 text-xs">
+                  <li>• Don't use maximum stretch - aim for 50-70% of maximum</li>
+                  <li>• Test stretch in the direction you'll be sewing (crosswise for sleeves)</li>
+                  <li>• Consider fabric recovery - does it bounce back after stretching?</li>
+                  <li>• Start conservative with negative ease and adjust in future garments</li>
+                </ul>
+              </div>
+              </motion.div>
+            )}
+          </div>
+        )}
       </div>
     </div>
   )
