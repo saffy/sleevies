@@ -40,10 +40,10 @@ function AppContent() {
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
-          <h1 className="text-5xl font-bold text-gray-800 mb-4">
+          <h1 className="text-5xl font-heading font-normal text-gray-800 dark:text-gray-100 mb-4">
             Sleevies
           </h1>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
             Create beautiful, printable sewing patterns with guided visual tools
           </p>
         </motion.header>
@@ -54,7 +54,7 @@ function AppContent() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="max-w-4xl mx-auto"
         >
-          <div className="bg-white rounded-lg shadow-lg p-8">
+          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8">
             <div className="text-center">
               <motion.div
                 animate={{ 
@@ -85,10 +85,10 @@ function AppContent() {
                 </div>
               </motion.div>
               
-              <h2 className="text-3xl font-semibold text-gray-800 mb-4">
+              <h2 className="text-3xl font-heading font-normal text-gray-800 dark:text-gray-100 mb-4">
                 Ready to Create
               </h2>
-              <p className="text-gray-600 mb-8">
+              <p className="text-gray-600 dark:text-gray-300 mb-8">
                 Your pattern generation journey starts here. This modern, responsive application 
                 will guide you through creating professional sewing patterns.
               </p>

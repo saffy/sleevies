@@ -55,8 +55,8 @@ export default function PatternWizard() {
     <div className="max-w-4xl mx-auto p-6">
       {/* Pattern Type Header */}
       <div className="text-center mb-8">
-        <h2 className="text-3xl font-bold text-gray-800 mb-2">Basic Sleeve Pattern</h2>
-        <p className="text-gray-600">Create a classic fitted sleeve pattern with custom measurements</p>
+        <h2 className="text-3xl font-heading font-normal text-gray-800 dark:text-gray-100 mb-2">Basic Sleeve Pattern</h2>
+        <p className="text-gray-600 dark:text-gray-300">Create a classic fitted sleeve pattern with custom measurements</p>
       </div>
 
       {/* Progress Steps */}
@@ -88,10 +88,10 @@ export default function PatternWizard() {
         </div>
         
         <div className="mt-4">
-          <h2 className="text-2xl font-bold text-gray-800">
+          <h2 className="text-2xl font-heading font-normal text-gray-800 dark:text-gray-100">
             {steps[currentStep - 1].title}
           </h2>
-          <p className="text-gray-600">{steps[currentStep - 1].description}</p>
+          <p className="text-gray-600 dark:text-gray-300">{steps[currentStep - 1].description}</p>
         </div>
       </div>
 

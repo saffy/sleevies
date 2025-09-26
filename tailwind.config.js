@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+  darkMode: 'class',
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
@@ -7,47 +8,36 @@ export default {
   theme: {
     extend: {
       colors: {
-        theme: {
-          primary: {
-            50: '#fef2f3',
-            100: '#fde6e8',
-            200: '#fad1d6',
-            300: '#f7aab4',
-            400: '#f2787e',
-            500: '#f2404f', // Folly - main coral red
-            600: '#e11d42', // Darker for accessibility
-            700: '#be123c',
-            800: '#9f1239',
-            900: '#881337',
+        sleevies: {
+          // Main Sleevies: ["#420c14","#f2404f","#b1ae81","#515a47","#444b4b"]
+          main: {
+            burgundy: '#420c14',
+            coral: '#f2404f', 
+            sage: '#b1ae81',
+            olive: '#515a47',
+            charcoal: '#444b4b',
           },
-          secondary: {
-            50: '#f7f7f2',
-            100: '#eeede5',
-            200: '#dddbc9',
-            300: '#c8c5a8',
-            400: '#b1ae81', // Sage - main color
-            500: '#9fa078',
-            600: '#8a8763',
-            700: '#716d52',
-            800: '#5c5944',
-            900: '#4c4839',
+          // Muted Sleevies: ["#2f1e20","#b67c81","#a1a091","#52554e","#464949"]
+          muted: {
+            burgundy: '#2f1e20',
+            coral: '#b67c81',
+            sage: '#a1a091', 
+            olive: '#52554e',
+            charcoal: '#464949',
           },
-          accent: {
-            50: '#f8f8f8',
-            100: '#eeeeee',
-            200: '#dcdcdc',
-            300: '#b8b8b8',
-            400: '#8d8d8d',
-            500: '#6b6b6b',
-            600: '#515a47', // Ebony - dark olive
-            700: '#444b4b', // Outer space - charcoal
-            800: '#420c14', // Chocolate cosmos - burgundy
-            900: '#2d0509',
+          // Cool Sleevies: ["#320d18","#c63154","#a0856e","#504a3e","#45393a"]
+          cool: {
+            burgundy: '#320d18',
+            coral: '#c63154',
+            sage: '#a0856e',
+            olive: '#504a3e', 
+            charcoal: '#45393a',
           },
         },
       },
       fontFamily: {
         'sans': ['Inter', 'system-ui', 'sans-serif'],
+        'heading': ['Ovo', 'serif'],
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in-out',
