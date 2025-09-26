@@ -77,7 +77,7 @@ export default function ArmDiagram({ shoulderToElbow, shoulderToWrist, units }) 
           y1={armCenterY - armWidth/2 - 2.5}
           x2={elbowX}
           y2={armCenterY + armWidth/2 + 2.5}
-          stroke="#B1AE81"
+          stroke="#EC4899"
           strokeWidth="0.6"
           strokeLinecap="round"
         />
@@ -121,17 +121,17 @@ export default function ArmDiagram({ shoulderToElbow, shoulderToWrist, units }) 
               y1={armCenterY + armWidth/2 + 6}
               x2={elbowX}
               y2={armCenterY + armWidth/2 + 6}
-              stroke="#B1AE81"
+              stroke="#EC4899"
               strokeWidth="0.2"
-              markerEnd="url(#arrowhead-sage)"
-              markerStart="url(#arrowhead-sage)"
+              markerEnd="url(#arrowhead-pink)"
+              markerStart="url(#arrowhead-pink)"
             />
             <text
               x={(shoulderX + elbowX) / 2}
               y={armCenterY + armWidth/2 + 10}
               textAnchor="middle"
               fontSize="2.5"
-              fill="#B1AE81"
+              fill="#EC4899"
               fontWeight="500"
             >
               {shoulderToElbow} {units}
@@ -167,14 +167,14 @@ export default function ArmDiagram({ shoulderToElbow, shoulderToWrist, units }) 
         {/* Arrow markers */}
         <defs>
           <marker
-            id="arrowhead-sage"
+            id="arrowhead-pink"
             markerWidth="1.5"
             markerHeight="1"
             refX="0.75"
             refY="0.5"
             orient="auto"
           >
-            <polygon points="0 0, 1.5 0.5, 0 1" fill="#B1AE81" />
+            <polygon points="0 0, 1.5 0.5, 0 1" fill="#EC4899" />
           </marker>
           <marker
             id="arrowhead-green"
