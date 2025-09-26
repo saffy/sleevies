@@ -56,6 +56,7 @@ export default function DaisyThemeSelector() {
                 {themes.map((theme) => (
                   <motion.label
                     key={theme.value}
+                    htmlFor={`theme-${theme.value}`}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     className={`flex items-center space-x-3 p-2 rounded-md cursor-pointer transition-colors hover:bg-base-200 ${
@@ -63,6 +64,7 @@ export default function DaisyThemeSelector() {
                     }`}
                   >
                     <input
+                      id={`theme-${theme.value}`}
                       type="radio"
                       name="theme-controller"
                       className="theme-controller radio radio-primary radio-sm"

@@ -38,7 +38,10 @@ export default function SleeveCapStep({ units, sleeveCapMeasurements, setSleeveC
           >
             <div className="flex items-center mb-2">
               <input
+                id="measurementType-bust"
+                name="measurementType"
                 type="radio"
+                value="bust"
                 checked={sleeveCapMeasurements.measurementType === 'bust'}
                 onChange={() => {}}
                 className="mr-2 text-primary"
@@ -60,7 +63,10 @@ export default function SleeveCapStep({ units, sleeveCapMeasurements, setSleeveC
           >
             <div className="flex items-center mb-2">
               <input
+                id="measurementType-manual"
+                name="measurementType"
                 type="radio"
+                value="manual"
                 checked={sleeveCapMeasurements.measurementType === 'manual'}
                 onChange={() => {}}
                 className="mr-2 text-primary"
@@ -74,10 +80,12 @@ export default function SleeveCapStep({ units, sleeveCapMeasurements, setSleeveC
         </div>
         {sleeveCapMeasurements.measurementType === 'bust' ? (
           <div className="mb-4">
-            <label className="block text-sm font-medium text-gray-700 mb-2">
+            <label htmlFor="bust" className="block text-sm font-medium text-gray-700 mb-2">
               Bust ({units})
             </label>
             <input
+              id="bust"
+              name="bust"
               type="number"
               value={sleeveCapMeasurements.bust}
               onChange={e => handleMeasurementChange('bust', e.target.value)}
@@ -89,10 +97,12 @@ export default function SleeveCapStep({ units, sleeveCapMeasurements, setSleeveC
         ) : (
           <div className="grid grid-cols-2 gap-4 mb-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="sleeveCapWidth" className="block text-sm font-medium text-gray-700 mb-2">
                 Sleeve Cap Width ({units})
               </label>
               <input
+                id="sleeveCapWidth"
+                name="sleeveCapWidth"
                 type="number"
                 value={sleeveCapMeasurements.sleeveCapWidth}
                 onChange={e => handleMeasurementChange('sleeveCapWidth', e.target.value)}
@@ -102,10 +112,12 @@ export default function SleeveCapStep({ units, sleeveCapMeasurements, setSleeveC
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
+              <label htmlFor="sleeveCapHeight" className="block text-sm font-medium text-gray-700 mb-2">
                 Sleeve Cap Height ({units})
               </label>
               <input
+                id="sleeveCapHeight"
+                name="sleeveCapHeight"
                 type="number"
                 value={sleeveCapMeasurements.sleeveCapHeight}
                 onChange={e => handleMeasurementChange('sleeveCapHeight', e.target.value)}
