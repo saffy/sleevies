@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { useState, useEffect } from 'react'
+import {PaintBrushIcon} from "@heroicons/react/24/solid/index.js";
 
 export default function DaisyThemeSelector() {
   const [isOpen, setIsOpen] = useState(false)
@@ -37,19 +38,7 @@ export default function DaisyThemeSelector() {
           className="btn btn-circle btn-ghost bg-base-100 shadow-lg border border-base-300"
           title="Choose Theme"
         >
-          <svg 
-            className="w-5 h-5" 
-            fill="none" 
-            stroke="currentColor" 
-            viewBox="0 0 24 24"
-          >
-            <path 
-              strokeLinecap="round" 
-              strokeLinejoin="round" 
-              strokeWidth={2} 
-              d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM7 3H5a2 2 0 00-2 2v12a4 4 0 004 4h2M9 3h2a2 2 0 012 2v12a4 4 0 01-2 2H9m6 0a4 4 0 004-4V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4z" 
-            />
-          </svg>
+          <PaintBrushIcon className="h-5 w-5" />
         </motion.button>
 
         {/* Theme Panel */}
