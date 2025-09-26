@@ -1,12 +1,17 @@
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 import PatternWizard from './components/PatternWizard'
+import ThemeSelector from './components/ThemeSelector'
+import { ThemeProvider, useTheme } from './contexts/ThemeContext'
 
-function App() {
+function AppContent() {
+  const { theme } = useTheme()
   const [showWizard, setShowWizard] = useState(false)
+
   if (showWizard) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-orange-50 to-green-50">
+      <div className={`min-h-screen ${theme.background}`}>
+        <ThemeSelector />
         <div className="container mx-auto px-4 py-8">
           <motion.button
             whileHover={{ scale: 1.05 }}
@@ -26,7 +31,8 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-orange-50 to-green-50">
+    <div className={`min-h-screen ${theme.background}`}>
+      <ThemeSelector />
       <div className="container mx-auto px-4 py-8">
         <motion.header
           initial={{ opacity: 0, y: -20 }}
@@ -62,7 +68,7 @@ function App() {
                 }}
                 className="inline-block mb-6"
               >
-                <div className="w-24 h-24 bg-gradient-to-br from-orange-400 to-green-500 rounded-full mx-auto flex items-center justify-center">
+                <div className={`w-24 h-24 bg-gradient-to-br ${theme.primary.gradient} rounded-full mx-auto flex items-center justify-center`}>
                   <svg 
                     className="w-12 h-12 text-white" 
                     fill="none" 
@@ -91,7 +97,7 @@ function App() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setShowWizard(true)}
-                className="bg-gradient-to-r from-orange-500 to-green-600 text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:shadow-xl transition-shadow duration-300"
+                className={`bg-gradient-to-r ${theme.primary.gradientButton} text-white font-semibold py-3 px-8 rounded-full shadow-lg hover:shadow-xl transition-shadow duration-300`}
               >
                 Get Started
               </motion.button>
@@ -100,6 +106,14 @@ function App() {
         </motion.main>
       </div>
     </div>
+  )
+}
+
+function App() {
+  return (
+    <ThemeProvider>
+      <AppContent />
+    </ThemeProvider>
   )
 }
 

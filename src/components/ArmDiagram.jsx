@@ -56,7 +56,7 @@ export default function ArmDiagram({ shoulderToElbow, shoulderToWrist, units }) 
           y1={armCenterY - armWidth/2 - 3}
           x2={shoulderX}
           y2={armCenterY + armWidth/2 + 3}
-          stroke="#EA580C"
+          stroke="#F2404F"
           strokeWidth="0.8"
           strokeLinecap="round"
         />
@@ -66,7 +66,7 @@ export default function ArmDiagram({ shoulderToElbow, shoulderToWrist, units }) 
           textAnchor="middle"
           fontSize="3"
           fontWeight="600"
-          fill="#EA580C"
+          fill="#F2404F"
         >
           Shoulder
         </text>
@@ -77,7 +77,7 @@ export default function ArmDiagram({ shoulderToElbow, shoulderToWrist, units }) 
           y1={armCenterY - armWidth/2 - 2.5}
           x2={elbowX}
           y2={armCenterY + armWidth/2 + 2.5}
-          stroke="#16A34A"
+          stroke="#B1AE81"
           strokeWidth="0.6"
           strokeLinecap="round"
         />
@@ -121,7 +121,7 @@ export default function ArmDiagram({ shoulderToElbow, shoulderToWrist, units }) 
               y1={armCenterY + armWidth/2 + 6}
               x2={elbowX}
               y2={armCenterY + armWidth/2 + 6}
-              stroke="#16A34A"
+              stroke="#B1AE81"
               strokeWidth="0.2"
               markerEnd="url(#arrowhead-sage)"
               markerStart="url(#arrowhead-sage)"
@@ -131,7 +131,7 @@ export default function ArmDiagram({ shoulderToElbow, shoulderToWrist, units }) 
               y={armCenterY + armWidth/2 + 10}
               textAnchor="middle"
               fontSize="2.5"
-              fill="#16A34A"
+              fill="#B1AE81"
               fontWeight="500"
             >
               {shoulderToElbow} {units}
@@ -174,7 +174,7 @@ export default function ArmDiagram({ shoulderToElbow, shoulderToWrist, units }) 
             refY="0.5"
             orient="auto"
           >
-            <polygon points="0 0, 1.5 0.5, 0 1" fill="#16A34A" />
+            <polygon points="0 0, 1.5 0.5, 0 1" fill="#B1AE81" />
           </marker>
           <marker
             id="arrowhead-green"
