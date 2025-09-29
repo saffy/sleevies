@@ -2,11 +2,17 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useState, useEffect } from 'react'
 import {PaintBrushIcon} from "@heroicons/react/24/solid/index.js";
 
-export default function DaisyThemeSelector() {
-  const [isOpen, setIsOpen] = useState(false)
-  const [currentTheme, setCurrentTheme] = useState('sleevies')
+interface Theme {
+  name: string;
+  value: string;
+  colors: string[];
+}
 
-  const themes = [
+export default function DaisyThemeSelector(): JSX.Element {
+  const [isOpen, setIsOpen] = useState<boolean>(false)
+  const [currentTheme, setCurrentTheme] = useState<string>('sleevies')
+
+  const themes: Theme[] = [
     { name: 'Sleevies', value: 'sleevies', colors: ['#420c14', '#f2404f', '#b1ae81'] },
     { name: 'Sleevies Muted', value: 'sleevies-muted', colors: ['#2f1e20', '#b67c81', '#a1a091'] },
     { name: 'Sleevies Cool', value: 'sleevies-cool', colors: ['#320d18', '#c63154', '#a0856e'] },
@@ -20,7 +26,7 @@ export default function DaisyThemeSelector() {
     document.documentElement.setAttribute('data-theme', savedTheme)
   }, [])
 
-  const handleThemeChange = (themeName) => {
+  const handleThemeChange = (themeName: string): void => {
     setCurrentTheme(themeName)
     document.documentElement.setAttribute('data-theme', themeName)
     localStorage.setItem('theme', themeName)

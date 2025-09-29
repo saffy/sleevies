@@ -3,8 +3,8 @@ import { useState } from 'react'
 import PatternWizard from './components/PatternWizard'
 import DaisyThemeSelector from './components/DaisyThemeSelector'
 
-function App() {
-  const [showWizard, setShowWizard] = useState(false)
+function App(): JSX.Element {
+  const [showWizard, setShowWizard] = useState<boolean>(false)
 
   if (showWizard) {
     return (
