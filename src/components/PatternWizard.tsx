@@ -1,46 +1,67 @@
+import React from 'react'
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 import ArmDiagram from './ArmDiagram'
 import MeasurementTips from './MeasurementTips'
-import SleeveCapStep from './SleeveCapStep.jsx'
+import SleeveCapStep from './SleeveCapStep'
 
-const steps = [
+interface Step {
+  id: number;
+  title: string;
+  description: string;
+}
+
+interface Measurements {
+  shoulderToElbow: string;
+  shoulderToWrist: string;
+}
+
+interface SleeveCapMeasurements {
+  measurementType: 'bust' | 'manual';
+  bust: string;
+  sleeveCapWidth: string;
+  sleeveCapHeight: string;
+}
+
+type Units = 'inches' | 'cm';
+
+const steps: Step[] = [
   { id: 1, title: 'Arm Measurements', description: 'Enter your arm measurements' },
   { id: 2, title: 'Sleeve Cap', description: 'Set sleeve cap dimensions' },
   { id: 3, title: 'Customization', description: 'Customize your pattern' },
   { id: 4, title: 'Generate', description: 'Create your pattern' },
 ]
 
-export default function PatternWizard() {
-  const [currentStep, setCurrentStep] = useState(1)
-  const [units, setUnits] = useState('inches')
-  const [measurements, setMeasurements] = useState({
+export default function PatternWizard(): React.JSX.Element {
+  const [currentStep, setCurrentStep] = useState<number>(1)
+  const [units, setUnits] = useState<Units>('inches')
+  const [measurements, setMeasurements] = useState<Measurements>({
     shoulderToElbow: '',
     shoulderToWrist: ''
   })
   
-  const [sleeveCapMeasurements, setSleeveCapMeasurements] = useState({
-    measurementType: 'bust', // 'bust' or 'manual'
+  const [sleeveCapMeasurements, setSleeveCapMeasurements] = useState<SleeveCapMeasurements>({
+    measurementType: 'bust',
     bust: '',
     sleeveCapWidth: '',
     sleeveCapHeight: ''
   })
 
   // Validation functions
-  const canProceedFromStep1 = () => {
-    return measurements.shoulderToElbow && measurements.shoulderToWrist
+  const canProceedFromStep1 = (): boolean => {
+    return Boolean(measurements.shoulderToElbow && measurements.shoulderToWrist)
   }
   
-  const canProceedFromStep2 = () => {
+  const canProceedFromStep2 = (): boolean => {
     if (sleeveCapMeasurements.measurementType === 'bust') {
-      return sleeveCapMeasurements.bust
+      return Boolean(sleeveCapMeasurements.bust)
     } else {
-      return sleeveCapMeasurements.sleeveCapWidth && sleeveCapMeasurements.sleeveCapHeight
+      return Boolean(sleeveCapMeasurements.sleeveCapWidth && sleeveCapMeasurements.sleeveCapHeight)
     }
   }
   
   // Get default measurements from placeholders if none entered
-  const getWorkingMeasurements = () => {
+  const getWorkingMeasurements = (): { shoulderToElbow: string; shoulderToWrist: string } => {
     const placeholders = {
       inches: { shoulderToElbow: '13', shoulderToWrist: '24' },
       cm: { shoulderToElbow: '33', shoulderToWrist: '61' }
@@ -155,8 +176,16 @@ export default function PatternWizard() {
 }
 
 
-function MeasurementsStep({ units, setUnits, measurements, setMeasurements, workingMeasurements }) {
-  const handleMeasurementChange = (field, value) => {
+interface MeasurementsStepProps {
+  units: Units;
+  setUnits: (units: Units) => void;
+  measurements: Measurements;
+  setMeasurements: (measurements: Measurements | ((prev: Measurements) => Measurements)) => void;
+  workingMeasurements: { shoulderToElbow: string; shoulderToWrist: string };
+}
+
+function MeasurementsStep({ units, setUnits, measurements, setMeasurements, workingMeasurements }: MeasurementsStepProps): React.JSX.Element {
+  const handleMeasurementChange = (field: keyof Measurements, value: string): void => {
     setMeasurements(prev => ({
       ...prev,
       [field]: value
@@ -253,10 +282,15 @@ function MeasurementsStep({ units, setUnits, measurements, setMeasurements, work
   )
 }
 
-function CustomizationStep({ units, setUnits }) {
-  const [easeType, setEaseType] = useState('regular')
-  const [customNegativeEase, setCustomNegativeEase] = useState('')
-  const [showStretchGuide, setShowStretchGuide] = useState(false)
+interface CustomizationStepProps {
+  units: Units;
+  setUnits: (units: Units) => void;
+}
+
+function CustomizationStep({ units, setUnits }: CustomizationStepProps): React.JSX.Element {
+  const [easeType, setEaseType] = useState<string>('regular')
+  const [customNegativeEase, setCustomNegativeEase] = useState<string>('')
+  const [showStretchGuide, setShowStretchGuide] = useState<boolean>(false)
   const easeOptions = units === 'inches' 
     ? [
         { value: 'fitted', label: 'Fitted (0-1 inches)', description: 'Close-fitting with minimal ease' },
@@ -483,7 +517,7 @@ function CustomizationStep({ units, setUnits }) {
   )
 }
 
-function GenerateStep() {
+function GenerateStep(): React.JSX.Element {
   return (
     <div className="text-center">
       <motion.div

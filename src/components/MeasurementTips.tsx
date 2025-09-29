@@ -1,4 +1,6 @@
-export default function MeasurementTips() {
+import React from 'react'
+
+export default function MeasurementTips(): React.JSX.Element {
   return (
     <div className="mt-6 p-4 bg-orange-50 rounded-lg">
       <h4 className="font-medium text-orange-800 mb-2">📏 How to Measure</h4>

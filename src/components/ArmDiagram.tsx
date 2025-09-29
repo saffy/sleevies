@@ -1,6 +1,13 @@
-import { motion } from 'framer-motion'
+import React from 'react'
 
-export default function ArmDiagram({ shoulderToElbow, shoulderToWrist, units }) {
+interface ArmDiagramProps {
+  shoulderToElbow: string;
+  shoulderToWrist: string;
+  units: 'inches' | 'cm';
+  step?: number;
+}
+
+export default function ArmDiagram({ shoulderToElbow, shoulderToWrist, units }: ArmDiagramProps): React.JSX.Element {
   // Canvas dimensions - using viewBox for responsive scaling
   const canvasWidth = 100 // percentage-based
   const canvasHeight = 50 // percentage-based

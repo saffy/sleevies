@@ -1,10 +1,11 @@
+import React from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useState } from 'react'
 import { useTheme } from '../contexts/ThemeContext'
 
-export default function ThemeSelector() {
-  const { theme, currentTheme, isDarkMode, changeTheme, toggleDarkMode, availableThemes } = useTheme()
-  const [isOpen, setIsOpen] = useState(false)
+export default function ThemeSelector(): React.JSX.Element {
+  const { currentTheme, isDarkMode, changeTheme, toggleDarkMode, availableThemes } = useTheme()
+  const [isOpen, setIsOpen] = useState<boolean>(false)
 
   return (
     <div className="fixed top-4 right-4 z-50">

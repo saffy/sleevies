@@ -1,3 +1,4 @@
+import React from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useState, useEffect } from 'react'
 import {PaintBrushIcon} from "@heroicons/react/24/solid/index.js";
@@ -8,7 +9,7 @@ interface Theme {
   colors: string[];
 }
 
-export default function DaisyThemeSelector(): JSX.Element {
+export default function DaisyThemeSelector(): React.JSX.Element {
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const [currentTheme, setCurrentTheme] = useState<string>('sleevies')
 

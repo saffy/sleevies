@@ -17,6 +17,7 @@ module.exports = {
       { allowConstantExport: true },
     ],
     'react/prop-types': 'off',
+    'react/no-unescaped-entities': 'off',
   },
   overrides: [
     {
@@ -25,7 +26,26 @@ module.exports = {
       plugins: ['@typescript-eslint'],
       rules: {
         'react/prop-types': 'off',
+        'react/no-unescaped-entities': 'off',
         '@typescript-eslint/no-unused-vars': 'warn',
+      },
+      parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+        ecmaFeatures: {
+          jsx: true,
+        },
+      },
+    },
+    {
+      files: ['**/*.test.tsx', '**/*.test.ts'],
+      env: {
+        jest: true,
+      },
+      globals: {
+        it: 'readonly',
+        expect: 'readonly',
+        describe: 'readonly',
       },
     },
   ],

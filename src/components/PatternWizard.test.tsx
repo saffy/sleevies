@@ -29,7 +29,9 @@ it('changes unit text when toggled', () => {
 
   // Find and click the toggle button
   const toggle = screen.getAllByRole('button').find(btn => btn.className.includes('rounded-full'));
-  fireEvent.click(toggle);
+  if (toggle) {
+    fireEvent.click(toggle);
+  }
 
   // Now should show cm
   expect(screen.getByText(/shoulder to elbow \(cm\)/i)).toBeInTheDocument();

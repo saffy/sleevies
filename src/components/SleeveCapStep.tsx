@@ -1,9 +1,25 @@
+import React from 'react'
 import { motion } from 'framer-motion';
 import ArmDiagram from './ArmDiagram';
 
-export default function SleeveCapStep({ units, sleeveCapMeasurements, setSleeveCapMeasurements, armMeasurements }) {
-  const handleMeasurementChange = (field, value) => {
-    setSleeveCapMeasurements(prev => ({
+interface SleeveCapStepProps {
+  units: 'inches' | 'cm';
+  sleeveCapMeasurements: {
+    measurementType: 'bust' | 'manual';
+    bust: string;
+    sleeveCapWidth: string;
+    sleeveCapHeight: string;
+  };
+  setSleeveCapMeasurements: (measurements: any) => void;
+  armMeasurements: {
+    shoulderToElbow: string;
+    shoulderToWrist: string;
+  };
+}
+
+export default function SleeveCapStep({ units, sleeveCapMeasurements, setSleeveCapMeasurements, armMeasurements }: SleeveCapStepProps): React.JSX.Element {
+  const handleMeasurementChange = (field: string, value: string): void => {
+    setSleeveCapMeasurements((prev: any) => ({
       ...prev,
       [field]: value
     }));
