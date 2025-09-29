@@ -1,10 +1,11 @@
+import React from 'react'
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 import PatternWizard from './components/PatternWizard'
 import DaisyThemeSelector from './components/DaisyThemeSelector'
 
-function App() {
-  const [showWizard, setShowWizard] = useState(false)
+function App(): React.JSX.Element {
+  const [showWizard, setShowWizard] = useState<boolean>(false)
 
   if (showWizard) {
     return (

@@ -1,3 +1,4 @@
+// TODO: consider porting to typescript
 // Sleevies Color Palette - Favorite Colors Collection
 // Colors identified and saved for easy reference without hex codes
 
