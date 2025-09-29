@@ -55,7 +55,7 @@ export default function ArmDiagram({ shoulderToElbow, shoulderToWrist, units }) 
           y1={armCenterY - armWidth/2 - 3}
           x2={shoulderX}
           y2={armCenterY + armWidth/2 + 3}
-          stroke="#F2404F"
+          className="stroke-diagram-shoulder"
           strokeWidth="0.8"
           strokeLinecap="round"
         />
@@ -65,7 +65,7 @@ export default function ArmDiagram({ shoulderToElbow, shoulderToWrist, units }) 
           textAnchor="middle"
           fontSize="3"
           fontWeight="600"
-          fill="#F2404F"
+          className="fill-diagram-shoulder"
         >
           Shoulder
         </text>
@@ -76,7 +76,7 @@ export default function ArmDiagram({ shoulderToElbow, shoulderToWrist, units }) 
           y1={armCenterY - armWidth/2 - 2.5}
           x2={elbowX}
           y2={armCenterY + armWidth/2 + 2.5}
-          stroke="#EC4899"
+          className="stroke-diagram-elbow"
           strokeWidth="0.6"
           strokeLinecap="round"
         />
@@ -86,7 +86,7 @@ export default function ArmDiagram({ shoulderToElbow, shoulderToWrist, units }) 
           textAnchor="middle"
           fontSize="3"
           fontWeight="600"
-          fill="#EC4899"
+          className="fill-diagram-elbow"
         >
           Elbow
         </text>
@@ -97,7 +97,7 @@ export default function ArmDiagram({ shoulderToElbow, shoulderToWrist, units }) 
           y1={armCenterY - armWidth/2 - 3}
           x2={wristX}
           y2={armCenterY + armWidth/2 + 3}
-          stroke="#059669"
+          className="stroke-diagram-wrist"
           strokeWidth="0.8"
           strokeLinecap="round"
         />
@@ -107,7 +107,7 @@ export default function ArmDiagram({ shoulderToElbow, shoulderToWrist, units }) 
           textAnchor="middle"
           fontSize="3"
           fontWeight="600"
-          fill="#059669"
+          className="fill-diagram-wrist"
         >
           Wrist
         </text>
@@ -120,17 +120,17 @@ export default function ArmDiagram({ shoulderToElbow, shoulderToWrist, units }) 
               y1={armCenterY + armWidth/2 + 6}
               x2={elbowX}
               y2={armCenterY + armWidth/2 + 6}
-              stroke="#EC4899"
+              className="stroke-diagram-elbow"
               strokeWidth="0.2"
-              markerEnd="url(#arrowhead-pink)"
-              markerStart="url(#arrowhead-pink)"
+              markerEnd="url(#arrowhead-elbow)"
+              markerStart="url(#arrowhead-elbow)"
             />
             <text
               x={(shoulderX + elbowX) / 2}
               y={armCenterY + armWidth/2 + 10}
               textAnchor="middle"
               fontSize="2.5"
-              fill="#EC4899"
+              className="fill-diagram-elbow"
               fontWeight="500"
             >
               {shoulderToElbow} {units}
@@ -145,17 +145,17 @@ export default function ArmDiagram({ shoulderToElbow, shoulderToWrist, units }) 
               y1={armCenterY + armWidth/2 + 12}
               x2={wristX}
               y2={armCenterY + armWidth/2 + 12}
-              stroke="#059669"
+              className="stroke-diagram-wrist"
               strokeWidth="0.2"
-              markerEnd="url(#arrowhead-green)"
-              markerStart="url(#arrowhead-green)"
+              markerEnd="url(#arrowhead-wrist)"
+              markerStart="url(#arrowhead-wrist)"
             />
             <text
               x={(shoulderX + wristX) / 2}
               y={armCenterY + armWidth/2 + 16}
               textAnchor="middle"
               fontSize="2.5"
-              fill="#059669"
+              className="fill-diagram-wrist"
               fontWeight="500"
             >
               {shoulderToWrist} {units}
@@ -166,24 +166,24 @@ export default function ArmDiagram({ shoulderToElbow, shoulderToWrist, units }) 
         {/* Arrow markers */}
         <defs>
           <marker
-            id="arrowhead-pink"
+            id="arrowhead-elbow"
             markerWidth="1.5"
             markerHeight="1"
             refX="0.75"
             refY="0.5"
             orient="auto"
           >
-            <polygon points="0 0, 1.5 0.5, 0 1" fill="#EC4899" />
+            <polygon points="0 0, 1.5 0.5, 0 1" className="fill-diagram-elbow" />
           </marker>
           <marker
-            id="arrowhead-green"
+            id="arrowhead-wrist"
             markerWidth="1.5"
             markerHeight="1"
             refX="0.75"
             refY="0.5"
             orient="auto"
           >
-            <polygon points="0 0, 1.5 0.5, 0 1" fill="#059669" />
+            <polygon points="0 0, 1.5 0.5, 0 1" className="fill-diagram-wrist" />
           </marker>
         </defs>
       </svg>

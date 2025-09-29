@@ -7,10 +7,42 @@ export default function DaisyThemeSelector() {
   const [currentTheme, setCurrentTheme] = useState('sleevies')
 
   const themes = [
-    { name: 'Default', value: 'sleevies', colors: ['#420c14', '#f2404f', '#b1ae81'] },
-    { name: 'Muted', value: 'sleevies-muted', colors: ['#2f1e20', '#b67c81', '#a1a091'] },
-    { name: 'Cool', value: 'sleevies-cool', colors: ['#320d18', '#c63154', '#a0856e'] },
-    { name: 'Dark', value: 'sleevies-dark', colors: ['#232329', '#e2a6b3', '#7a9e6d'] },
+    { 
+      name: 'Default', 
+      value: 'sleevies', 
+      colors: [
+        { bg: 'bg-red-900', label: 'Primary' },
+        { bg: 'bg-sleevies-coral', label: 'Coral' },
+        { bg: 'bg-yellow-600', label: 'Accent' }
+      ]
+    },
+    { 
+      name: 'Muted', 
+      value: 'sleevies-muted', 
+      colors: [
+        { bg: 'bg-stone-800', label: 'Primary' },
+        { bg: 'bg-rose-400', label: 'Muted' },
+        { bg: 'bg-stone-400', label: 'Neutral' }
+      ]
+    },
+    { 
+      name: 'Cool', 
+      value: 'sleevies-cool', 
+      colors: [
+        { bg: 'bg-slate-800', label: 'Primary' },
+        { bg: 'bg-pink-500', label: 'Cool' },
+        { bg: 'bg-amber-600', label: 'Accent' }
+      ]
+    },
+    { 
+      name: 'Dark', 
+      value: 'sleevies-dark', 
+      colors: [
+        { bg: 'bg-gray-800', label: 'Dark' },
+        { bg: 'bg-emerald-400', label: 'Primary' },
+        { bg: 'bg-rose-400', label: 'Accent' }
+      ]
+    },
   ]
 
   // Set initial theme and listen for changes
@@ -72,11 +104,11 @@ export default function DaisyThemeSelector() {
                     />
                     <div className="flex items-center space-x-2">
                       <div className="flex space-x-1">
-                        {theme.colors.map((color, index) => (
+                        {theme.colors.map((colorObj, index) => (
                           <div 
                             key={index}
-                            className="w-3 h-3 rounded-full" 
-                            style={{ backgroundColor: color }}
+                            className={`w-3 h-3 rounded-full ${colorObj.bg}`}
+                            title={colorObj.label}
                           />
                         ))}
                       </div>
